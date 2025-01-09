@@ -2,7 +2,7 @@
 
 Welcome to **Exploring FAIR Scientific Datasets with Python**, a Jupyter Book dedicated to helping you access and visualise interesting FAIR-compliant scientific datasets using Python. Each chapter focuses on a different dataset that could be useful to a broad range of scientists or the general public, guiding you through the process of retrieving, analysing, and plotting the data.
 
-You don't need to be an Python expert - this tutorial series should be suitable for beginners.
+You don't need to be an Python expert - this tutorial series should be suitable for beginners as well as improvers.
 
 ## About the Book
 
