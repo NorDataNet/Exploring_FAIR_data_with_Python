@@ -4,6 +4,9 @@ Welcome to **Exploring FAIR Scientific Datasets with Python**, a Jupyter Book de
 
 You don't need to be an Python expert - this tutorial series should be suitable for beginners as well as improvers.
 
+You can read the book here:
+https://nordatanet.github.io/Exploring_FAIR_data_with_Python
+
 ## About the Book
 
 This book is for anyone interested in:
