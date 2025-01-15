@@ -3,3 +3,5 @@
 
 format: jb-book
 root: intro
+chapters:
+- file: global_surface_temperature_anomalies.ipynb
