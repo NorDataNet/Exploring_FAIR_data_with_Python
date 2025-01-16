@@ -1,4 +1,5 @@
 book/*.csv
+book/*.png
 
 # Jupyter Book build files
 _build/
