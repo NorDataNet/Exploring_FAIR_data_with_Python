@@ -5,3 +5,4 @@ format: jb-book
 root: intro
 chapters:
 - file: global_surface_temperature_anomalies.ipynb
+- file: Antarctica_and_Greenland_ice_sheet_elevation_and_thickness.ipynb
