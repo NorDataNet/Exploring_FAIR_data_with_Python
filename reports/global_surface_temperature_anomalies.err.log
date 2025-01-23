@@ -36,7 +36,7 @@ File [0;32m~/anaconda3/lib/python3.11/site-packages/xarray/backends/lru_cache.p
 [0;32m---> 56[0m     value [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39m_cache[key]
 [1;32m     57[0m     [38;5;28mself[39m[38;5;241m.[39m_cache[38;5;241m.[39mmove_to_end(key)
 
-[0;31mKeyError[0m: [<class 'netCDF4._netCDF4.Dataset'>, ('https://www.ncei.noaa.gov/thredds/dodsC/noaa-global-temp-v6/NOAAGlobalTemp_v6.0.0_gridded_s185001_e202411_c20241208T145954.nc',), 'r', (('clobber', True), ('diskless', False), ('format', 'NETCDF4'), ('persist', False)), '5dc42c83-a124-43b7-bf83-0048f9649bcc']
+[0;31mKeyError[0m: [<class 'netCDF4._netCDF4.Dataset'>, ('https://www.ncei.noaa.gov/thredds/dodsC/noaa-global-temp-v6/NOAAGlobalTemp_v6.0.0_gridded_s185001_e202411_c20241208T145954.nc',), 'r', (('clobber', True), ('diskless', False), ('format', 'NETCDF4'), ('persist', False)), 'bbeaa968-37b4-4a3b-8ed5-84370eb78714']
 
 During handling of the above exception, another exception occurred:
 
