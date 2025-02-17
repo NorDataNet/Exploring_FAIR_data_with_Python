@@ -22,3 +22,22 @@ Each chapter is independent, so you can jump to the datasets that interest you m
 
 ```{tableofcontents}
 ```
+
+## Useful links
+
+### My other relevant tutorials
+
+- A introduction to working with NetCDF files using Python:
+    - https://github.com/NorDataNet/NetCDF_in_Python_from_beginner_to_pro
+
+### For visualising  the data
+
+- Map projections: https://scitools.org.uk/cartopy/docs/v0.15/crs/projections.html
+- Matplotlib built-in colourmaps: https://matplotlib.org/stable/users/explain/colors/colormaps.html
+- Colourmaps for oceanography from `cmocean`: https://matplotlib.org/cmocean/
+
+### Conventions
+
+The following conventions are commonly used in NetCDF file. A NetCDF file by itself is not neccessarily FAIR-compliant. These conventions provide rules and recommendations on which metadata terms should be included in a file and how a file should be structured, thereby making the file machine-readable:
+- Climate & Forecast (CF) conventions: https://cfconventions.org/
+- Attribute Convention for Data Discovery (ACDD): https://wiki.esipfed.org/Attribute_Convention_for_Data_Discovery_1-3
