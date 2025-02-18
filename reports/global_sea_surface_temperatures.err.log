@@ -37,8 +37,6 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-['import xarray as xr', 'import matplotlib.pyplot as plt', 'import cartopy.crs as ccrs', 'import cartopy.feature as cfeature', '']
-...
-['ax.coastlines()', "ax.add_feature(cfeature.LAND, facecolor='grey')", '', "plt.savefig(f'sea_water_temperatures.png', transparent=True)", 'plt.show()']
+df.to_csv('global_sea_surface_temperatures.csv')
 -------------------
 

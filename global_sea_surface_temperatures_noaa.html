@@ -1,0 +1,2475 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Global Sea Surface Temperature &#8212; Exploring FAIR Scientific Datasets with Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'global_sea_surface_temperatures_noaa';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Global Sea Surface Temperatures, Sea Ice Concentration and Wind Speed" href="global_sea_surface_temperatures.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Exploring FAIR Scientific Datasets with Python - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Exploring FAIR Scientific Datasets with Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Exploring FAIR Scientific Datasets with Python
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="global_surface_temperature_anomalies.html">Global Surface Temperature Anomalies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Global_and_regional_bathymetry.html">Global and Regional Topography &amp; Bathymetry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="global_sea_surface_temperatures.html">Global Sea Surface Temperatures, Sea Ice Concentration and Wind Speed</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Global Sea Surface Temperature</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/NorDataNet/Exploring_FAIR_data_with_Python" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/NorDataNet/Exploring_FAIR_data_with_Python/issues/new?title=Issue%20on%20page%20%2Fglobal_sea_surface_temperatures_noaa.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/global_sea_surface_temperatures_noaa.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Global Sea Surface Temperature</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-characteristics">Data characteristics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#useful-links">Useful Links</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#crediting-the-data-providers">Crediting the Data Providers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exploring-the-data-in-python">Exploring the data in Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-modules">Importing modules</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#opening-and-understanding-the-data">Opening and understanding the data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-the-data-to-a-csv-file">Writing the data to a CSV file</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-the-data-for-a-day-of-our-choosing">Plotting the data for a day of our choosing</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#full-working-example">Full working example</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-a-mask-for-sea-ice">Adding a mask for sea ice</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zooming-in-on-area-of-interest">Zooming in on area of interest</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-the-sea-surface-temperature-at-a-given-location-and-date">Finding the sea surface temperature at a given location and date</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interactive-plot">Interactive plot</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="global-sea-surface-temperature">
+<h1>Global Sea Surface Temperature<a class="headerlink" href="#global-sea-surface-temperature" title="Permalink to this heading">#</a></h1>
+<p><img alt="Map of global sea surface temperatures" src="_images/sea_water_temperatures.png" /></p>
+<p>The <strong>NOAA 1/4° Daily Optimum Interpolation Sea Surface Temperature</strong> incorporates observations from different platforms (satellites, ships, buoys and Argo floats) into a regular global grid. The dataset is interpolated to fill gaps on the grid and create a spatially complete map of sea surface temperature. Satellite and ship observations are referenced to buoys to compensate for platform differences and sensor biases.</p>
+<section id="data-characteristics">
+<h2>Data characteristics<a class="headerlink" href="#data-characteristics" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Spatial resolution</strong>: 0.25° latitude × 0.25° longitude.</p></li>
+<li><p><strong>Temporal coverage</strong>: Daily values from September 1981 to the present.</p></li>
+<li><p><strong>Updated</strong>: Daily</p></li>
+</ul>
+<blockquote>
+<div><p><strong>Note:</strong> Data less than 15 days old may be subject to revision by NCEI</p>
+</div></blockquote>
+</section>
+<section id="useful-links">
+<h2>Useful Links<a class="headerlink" href="#useful-links" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Dataset Information Page</strong><br />
+<a class="reference external" href="https://www.ncei.noaa.gov/products/optimum-interpolation-sst">https://www.ncei.noaa.gov/products/optimum-interpolation-sst</a></p></li>
+<li><p><strong>Dataset Landing Page</strong><br />
+<a class="reference external" href="https://www.ncei.noaa.gov/access/metadata/landing-page/bin/iso?id=gov.noaa.ncdc:C00844#:~:text=The%20NOAA%201%2F4%20degree,gaps%20filled%20in%20by%20interpolation">https://www.ncei.noaa.gov/access/metadata/landing-page/bin/iso?id=gov.noaa.ncdc:C00844#:~:text=The NOAA 1%2F4 degree,gaps filled in by interpolation</a>.</p></li>
+<li><p><strong>THREDDS Catalogue</strong></p>
+<ul>
+<li><p>Human interface: <a class="reference external" href="https://www.ncei.noaa.gov/thredds/catalog/OisstBase/NetCDF/V2.1/AVHRR/catalog.html">https://www.ncei.noaa.gov/thredds/catalog/OisstBase/NetCDF/V2.1/AVHRR/catalog.html</a></p></li>
+<li><p>Machine interface: <a class="reference external" href="https://www.ncei.noaa.gov/thredds/catalog/OisstBase/NetCDF/V2.1/AVHRR/catalog.xml">https://www.ncei.noaa.gov/thredds/catalog/OisstBase/NetCDF/V2.1/AVHRR/catalog.xml</a></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="crediting-the-data-providers">
+<h2>Crediting the Data Providers<a class="headerlink" href="#crediting-the-data-providers" title="Permalink to this heading">#</a></h2>
+<p>When using this dataset in publications or presentations, please provide the following citation:</p>
+<blockquote>
+<div><p>Richard W. Reynolds, Viva F. Banzon, and NOAA CDR Program (2008): NOAA Optimum Interpolation 1/4 Degree Daily Sea Surface Temperature (OISST) Analysis, Version 2. [indicate subset used]. NOAA National Centers for Environmental Information. doi:10.7289/V5SQ8XB5 [access date].</p>
+</div></blockquote>
+</section>
+<section id="exploring-the-data-in-python">
+<h2>Exploring the data in Python<a class="headerlink" href="#exploring-the-data-in-python" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">YouTubeVideo</span>
+<span class="n">YouTubeVideo</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+        <iframe
+            width="400"
+            height="300"
+            src="https://www.youtube.com/embed/"
+            frameborder="0"
+            allowfullscreen
+            
+        ></iframe>
+        </div></div>
+</div>
+<section id="importing-modules">
+<h3>Importing modules<a class="headerlink" href="#importing-modules" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span> <span class="c1"># For reading data from a NetCDF file</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> <span class="c1"># For plotting the data</span>
+<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span> <span class="c1"># For plotting maps</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="opening-and-understanding-the-data">
+<h3>Opening and understanding the data<a class="headerlink" href="#opening-and-understanding-the-data" title="Permalink to this heading">#</a></h3>
+<p>The data have been published in a series of CF-NetCDF files, one per year, which are updated daily. Whilst it is possible to directly download these data, we are not going to do that. The data are served over a THREDDS catalogue:</p>
+<ul class="simple">
+<li><p>Human interface: <a class="reference external" href="https://www.ncei.noaa.gov/thredds/catalog/OisstBase/NetCDF/V2.1/AVHRR/catalog.html">https://www.ncei.noaa.gov/thredds/catalog/OisstBase/NetCDF/V2.1/AVHRR/catalog.html</a></p></li>
+<li><p>Machine interface: <a class="reference external" href="https://www.ncei.noaa.gov/thredds/catalog/OisstBase/NetCDF/V2.1/AVHRR/catalog.xml">https://www.ncei.noaa.gov/thredds/catalog/OisstBase/NetCDF/V2.1/AVHRR/catalog.xml</a></p></li>
+</ul>
+<p>If you click on the human-interface above, you can navigate through the folders and select one of the files. You will see that the data are served over OPeNDAP. OPeNDAP provides a way of streaming data over the internet so you don’t have to download them to your own computer. You can copy the OPeNDAP Data URL and use it in your script in the same way that you would use a local filepath.</p>
+<p>Let’s start by loading in the data from a single file.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://psl.noaa.gov/thredds/dodsC/Datasets/noaa.oisst.v2.highres/sst.day.mean.2025.nc&#39;</span>
+<span class="n">xrds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">xrds</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme="dark"],
+html[data-theme="dark"],
+body[data-theme="dark"],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1f1f1f;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block !important;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 0 20px 0 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: inline-block;
+  opacity: 0;
+  height: 0;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:focus + label {
+  border: 2px solid var(--xr-font-color0);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: "►";
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: "▼";
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: "(";
+}
+
+.xr-dim-list:after {
+  content: ")";
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ",";
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-index-name div,
+.xr-index-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2,
+.xr-no-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.Dataset&gt; Size: 195MB
+Dimensions:  (time: 47, lat: 720, lon: 1440)
+Coordinates:
+  * time     (time) datetime64[ns] 376B 2025-01-01 2025-01-02 ... 2025-02-16
+  * lat      (lat) float32 3kB -89.88 -89.62 -89.38 -89.12 ... 89.38 89.62 89.88
+  * lon      (lon) float32 6kB 0.125 0.375 0.625 0.875 ... 359.4 359.6 359.9
+Data variables:
+    sst      (time, lat, lon) float32 195MB ...
+Attributes:
+    Conventions:                     CF-1.5
+    _NCProperties:                   version=2,netcdf=4.7.0,hdf5=1.10.5,
+    title:                           NOAA/NCEI 1/4 Degree Daily Optimum Inter...
+    institution:                     NOAA/National Centers for Environmental ...
+    source:                          NOAA/NCEI https://www.ncei.noaa.gov/data...
+    References:                      https://www.psl.noaa.gov/data/gridded/da...
+    dataset_title:                   NOAA Daily Optimum Interpolation Sea Sur...
+    version:                         Version 2.1
+    comment:                         Reynolds, et al.(2007) Daily High-Resolu...
+    DODS_EXTRA.Unlimited_Dimension:  time</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-daa77039-409d-428c-95e3-83d238623531' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-daa77039-409d-428c-95e3-83d238623531' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>time</span>: 47</li><li><span class='xr-has-index'>lat</span>: 720</li><li><span class='xr-has-index'>lon</span>: 1440</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-4fd30cc9-25b2-4f78-89b6-956ae548445f' class='xr-section-summary-in' type='checkbox'  checked><label for='section-4fd30cc9-25b2-4f78-89b6-956ae548445f' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>time</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>2025-01-01 ... 2025-02-16</div><input id='attrs-a0c9de12-9ae8-4bec-a004-7350e477d954' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-a0c9de12-9ae8-4bec-a004-7350e477d954' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-3e80dc06-3876-4416-9e4a-6f129695d679' class='xr-var-data-in' type='checkbox'><label for='data-3e80dc06-3876-4416-9e4a-6f129695d679' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Time</dd><dt><span>delta_t :</span></dt><dd>0000-00-01 00:00:00</dd><dt><span>avg_period :</span></dt><dd>0000-00-01 00:00:00</dd><dt><span>axis :</span></dt><dd>T</dd><dt><span>actual_range :</span></dt><dd>[82180. 82226.]</dd><dt><span>_ChunkSizes :</span></dt><dd>512</dd></dl></div><div class='xr-var-data'><pre>array([&#x27;2025-01-01T00:00:00.000000000&#x27;, &#x27;2025-01-02T00:00:00.000000000&#x27;,
+       &#x27;2025-01-03T00:00:00.000000000&#x27;, &#x27;2025-01-04T00:00:00.000000000&#x27;,
+       &#x27;2025-01-05T00:00:00.000000000&#x27;, &#x27;2025-01-06T00:00:00.000000000&#x27;,
+       &#x27;2025-01-07T00:00:00.000000000&#x27;, &#x27;2025-01-08T00:00:00.000000000&#x27;,
+       &#x27;2025-01-09T00:00:00.000000000&#x27;, &#x27;2025-01-10T00:00:00.000000000&#x27;,
+       &#x27;2025-01-11T00:00:00.000000000&#x27;, &#x27;2025-01-12T00:00:00.000000000&#x27;,
+       &#x27;2025-01-13T00:00:00.000000000&#x27;, &#x27;2025-01-14T00:00:00.000000000&#x27;,
+       &#x27;2025-01-15T00:00:00.000000000&#x27;, &#x27;2025-01-16T00:00:00.000000000&#x27;,
+       &#x27;2025-01-17T00:00:00.000000000&#x27;, &#x27;2025-01-18T00:00:00.000000000&#x27;,
+       &#x27;2025-01-19T00:00:00.000000000&#x27;, &#x27;2025-01-20T00:00:00.000000000&#x27;,
+       &#x27;2025-01-21T00:00:00.000000000&#x27;, &#x27;2025-01-22T00:00:00.000000000&#x27;,
+       &#x27;2025-01-23T00:00:00.000000000&#x27;, &#x27;2025-01-24T00:00:00.000000000&#x27;,
+       &#x27;2025-01-25T00:00:00.000000000&#x27;, &#x27;2025-01-26T00:00:00.000000000&#x27;,
+       &#x27;2025-01-27T00:00:00.000000000&#x27;, &#x27;2025-01-28T00:00:00.000000000&#x27;,
+       &#x27;2025-01-29T00:00:00.000000000&#x27;, &#x27;2025-01-30T00:00:00.000000000&#x27;,
+       &#x27;2025-01-31T00:00:00.000000000&#x27;, &#x27;2025-02-01T00:00:00.000000000&#x27;,
+       &#x27;2025-02-02T00:00:00.000000000&#x27;, &#x27;2025-02-03T00:00:00.000000000&#x27;,
+       &#x27;2025-02-04T00:00:00.000000000&#x27;, &#x27;2025-02-05T00:00:00.000000000&#x27;,
+       &#x27;2025-02-06T00:00:00.000000000&#x27;, &#x27;2025-02-07T00:00:00.000000000&#x27;,
+       &#x27;2025-02-08T00:00:00.000000000&#x27;, &#x27;2025-02-09T00:00:00.000000000&#x27;,
+       &#x27;2025-02-10T00:00:00.000000000&#x27;, &#x27;2025-02-11T00:00:00.000000000&#x27;,
+       &#x27;2025-02-12T00:00:00.000000000&#x27;, &#x27;2025-02-13T00:00:00.000000000&#x27;,
+       &#x27;2025-02-14T00:00:00.000000000&#x27;, &#x27;2025-02-15T00:00:00.000000000&#x27;,
+       &#x27;2025-02-16T00:00:00.000000000&#x27;], dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lat</span></div><div class='xr-var-dims'>(lat)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>-89.88 -89.62 ... 89.62 89.88</div><input id='attrs-510b198a-fa71-47e3-9a02-d5650e78e6d5' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-510b198a-fa71-47e3-9a02-d5650e78e6d5' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-b0f87160-ed72-4cad-bd78-74628172e64c' class='xr-var-data-in' type='checkbox'><label for='data-b0f87160-ed72-4cad-bd78-74628172e64c' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>actual_range :</span></dt><dd>[-89.875  89.875]</dd><dt><span>axis :</span></dt><dd>Y</dd></dl></div><div class='xr-var-data'><pre>array([-89.875, -89.625, -89.375, ...,  89.375,  89.625,  89.875],
+      dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lon</span></div><div class='xr-var-dims'>(lon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>0.125 0.375 0.625 ... 359.6 359.9</div><input id='attrs-fa0593cb-4488-4640-9233-d48a1389a7a4' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-fa0593cb-4488-4640-9233-d48a1389a7a4' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-9903fa1c-3262-4891-8c44-bbb20d1fa095' class='xr-var-data-in' type='checkbox'><label for='data-9903fa1c-3262-4891-8c44-bbb20d1fa095' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>actual_range :</span></dt><dd>[1.25000e-01 3.59875e+02]</dd><dt><span>axis :</span></dt><dd>X</dd></dl></div><div class='xr-var-data'><pre>array([1.25000e-01, 3.75000e-01, 6.25000e-01, ..., 3.59375e+02, 3.59625e+02,
+       3.59875e+02], dtype=float32)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-81177f40-db2d-41f7-a91b-41127c2a108e' class='xr-section-summary-in' type='checkbox'  checked><label for='section-81177f40-db2d-41f7-a91b-41127c2a108e' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>sst</span></div><div class='xr-var-dims'>(time, lat, lon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-0c3e4032-1680-4714-b6ce-4349c9254144' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-0c3e4032-1680-4714-b6ce-4349c9254144' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-b23f1176-c2a1-46a6-a825-1609858266c1' class='xr-var-data-in' type='checkbox'><label for='data-b23f1176-c2a1-46a6-a825-1609858266c1' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Daily Sea Surface Temperature</dd><dt><span>units :</span></dt><dd>degC</dd><dt><span>valid_range :</span></dt><dd>[-3. 45.]</dd><dt><span>precision :</span></dt><dd>2.0</dd><dt><span>dataset :</span></dt><dd>NOAA High-resolution Blended Analysis</dd><dt><span>var_desc :</span></dt><dd>Sea Surface Temperature</dd><dt><span>level_desc :</span></dt><dd>Surface</dd><dt><span>statistic :</span></dt><dd>Mean</dd><dt><span>parent_stat :</span></dt><dd>Individual Observations</dd><dt><span>actual_range :</span></dt><dd>[-1.8  35.79]</dd><dt><span>_ChunkSizes :</span></dt><dd>[   1  720 1440]</dd></dl></div><div class='xr-var-data'><pre>[48729600 values with dtype=float32]</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-95545e80-2d44-413e-a848-4641338a4d6f' class='xr-section-summary-in' type='checkbox'  ><label for='section-95545e80-2d44-413e-a848-4641338a4d6f' class='xr-section-summary' >Indexes: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>time</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-d30a753d-d625-4276-8674-bd8a2d1bc603' class='xr-index-data-in' type='checkbox'/><label for='index-d30a753d-d625-4276-8674-bd8a2d1bc603' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(DatetimeIndex([&#x27;2025-01-01&#x27;, &#x27;2025-01-02&#x27;, &#x27;2025-01-03&#x27;, &#x27;2025-01-04&#x27;,
+               &#x27;2025-01-05&#x27;, &#x27;2025-01-06&#x27;, &#x27;2025-01-07&#x27;, &#x27;2025-01-08&#x27;,
+               &#x27;2025-01-09&#x27;, &#x27;2025-01-10&#x27;, &#x27;2025-01-11&#x27;, &#x27;2025-01-12&#x27;,
+               &#x27;2025-01-13&#x27;, &#x27;2025-01-14&#x27;, &#x27;2025-01-15&#x27;, &#x27;2025-01-16&#x27;,
+               &#x27;2025-01-17&#x27;, &#x27;2025-01-18&#x27;, &#x27;2025-01-19&#x27;, &#x27;2025-01-20&#x27;,
+               &#x27;2025-01-21&#x27;, &#x27;2025-01-22&#x27;, &#x27;2025-01-23&#x27;, &#x27;2025-01-24&#x27;,
+               &#x27;2025-01-25&#x27;, &#x27;2025-01-26&#x27;, &#x27;2025-01-27&#x27;, &#x27;2025-01-28&#x27;,
+               &#x27;2025-01-29&#x27;, &#x27;2025-01-30&#x27;, &#x27;2025-01-31&#x27;, &#x27;2025-02-01&#x27;,
+               &#x27;2025-02-02&#x27;, &#x27;2025-02-03&#x27;, &#x27;2025-02-04&#x27;, &#x27;2025-02-05&#x27;,
+               &#x27;2025-02-06&#x27;, &#x27;2025-02-07&#x27;, &#x27;2025-02-08&#x27;, &#x27;2025-02-09&#x27;,
+               &#x27;2025-02-10&#x27;, &#x27;2025-02-11&#x27;, &#x27;2025-02-12&#x27;, &#x27;2025-02-13&#x27;,
+               &#x27;2025-02-14&#x27;, &#x27;2025-02-15&#x27;, &#x27;2025-02-16&#x27;],
+              dtype=&#x27;datetime64[ns]&#x27;, name=&#x27;time&#x27;, freq=None))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>lat</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-37a6c50e-a7f2-4d93-b62a-298ce617124a' class='xr-index-data-in' type='checkbox'/><label for='index-37a6c50e-a7f2-4d93-b62a-298ce617124a' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([-89.875, -89.625, -89.375, -89.125, -88.875, -88.625, -88.375, -88.125,
+       -87.875, -87.625,
+       ...
+        87.625,  87.875,  88.125,  88.375,  88.625,  88.875,  89.125,  89.375,
+        89.625,  89.875],
+      dtype=&#x27;float32&#x27;, name=&#x27;lat&#x27;, length=720))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>lon</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-3e05da61-925a-42e1-af2a-263175cf761d' class='xr-index-data-in' type='checkbox'/><label for='index-3e05da61-925a-42e1-af2a-263175cf761d' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([  0.125,   0.375,   0.625,   0.875,   1.125,   1.375,   1.625,   1.875,
+         2.125,   2.375,
+       ...
+       357.625, 357.875, 358.125, 358.375, 358.625, 358.875, 359.125, 359.375,
+       359.625, 359.875],
+      dtype=&#x27;float32&#x27;, name=&#x27;lon&#x27;, length=1440))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-c45506a8-2e4b-46cb-bc87-e6e242cbfdb8' class='xr-section-summary-in' type='checkbox'  ><label for='section-c45506a8-2e4b-46cb-bc87-e6e242cbfdb8' class='xr-section-summary' >Attributes: <span>(10)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>Conventions :</span></dt><dd>CF-1.5</dd><dt><span>_NCProperties :</span></dt><dd>version=2,netcdf=4.7.0,hdf5=1.10.5,</dd><dt><span>title :</span></dt><dd>NOAA/NCEI 1/4 Degree Daily Optimum Interpolation Sea Surface Temperature (OISST) Analysis, Version 2.1</dd><dt><span>institution :</span></dt><dd>NOAA/National Centers for Environmental Information</dd><dt><span>source :</span></dt><dd>NOAA/NCEI https://www.ncei.noaa.gov/data/sea-surface-temperature-optimum-interpolation/v2.1/access/avhrr/</dd><dt><span>References :</span></dt><dd>https://www.psl.noaa.gov/data/gridded/data.noaa.oisst.v2.highres.html</dd><dt><span>dataset_title :</span></dt><dd>NOAA Daily Optimum Interpolation Sea Surface Temperature</dd><dt><span>version :</span></dt><dd>Version 2.1</dd><dt><span>comment :</span></dt><dd>Reynolds, et al.(2007) Daily High-Resolution-Blended Analyses for Sea Surface Temperature (available at https://doi.org/10.1175/2007JCLI1824.1). Banzon, et al.(2016) A long-term record of blended satellite and in situ sea-surface temperature for climate monitoring, modeling and environmental studies (available at https://doi.org/10.5194/essd-8-165-2016). Huang, B., C. Liu, V. Banzon, E. Freeman, G. Graham, B. Hankins, T. Smith, and H.-M. Zhang, 2021: Improvements of the Daily Optimum Interpolation Sea Surface Temperature (DOISST) Version 2.1 (available at https://doi.org/10.1175/JCLI-D-20-0166.1). Anomaly is based on 1971-2000 OI.v2 SST. Satellite data: multi-satellite sensor (AVHRR+VIIRS) data. Ice data: NCEP Ice and GSFC Ice. Data less than 15 days old may be subject to revision.</dd><dt><span>DODS_EXTRA.Unlimited_Dimension :</span></dt><dd>time</dd></dl></div></li></ul></div></div></div></div>
+</div>
+<p>The OPeNDAP data access URL is predictable, a function of the date. Let’s write something to access the data from any date of our choosing.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">desired_date</span> <span class="o">=</span> <span class="s1">&#39;2024-02-01&#39;</span>
+<span class="n">year</span> <span class="o">=</span> <span class="n">desired_date</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://psl.noaa.gov/thredds/dodsC/Datasets/noaa.oisst.v2.highres/sst.day.mean.</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">.nc&#39;</span>
+<span class="n">xrds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+<span class="n">ds_one_day</span> <span class="o">=</span> <span class="n">xrds</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span> <span class="o">=</span> <span class="n">desired_date</span><span class="p">)</span>
+<span class="n">ds_one_day</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme="dark"],
+html[data-theme="dark"],
+body[data-theme="dark"],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1f1f1f;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block !important;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 0 20px 0 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: inline-block;
+  opacity: 0;
+  height: 0;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:focus + label {
+  border: 2px solid var(--xr-font-color0);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: "►";
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: "▼";
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: "(";
+}
+
+.xr-dim-list:after {
+  content: ")";
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ",";
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-index-name div,
+.xr-index-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2,
+.xr-no-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.Dataset&gt; Size: 4MB
+Dimensions:  (lat: 720, lon: 1440)
+Coordinates:
+    time     datetime64[ns] 8B 2024-02-01
+  * lat      (lat) float32 3kB -89.88 -89.62 -89.38 -89.12 ... 89.38 89.62 89.88
+  * lon      (lon) float32 6kB 0.125 0.375 0.625 0.875 ... 359.4 359.6 359.9
+Data variables:
+    sst      (lat, lon) float32 4MB ...
+Attributes:
+    Conventions:                     CF-1.5
+    _NCProperties:                   version=2,netcdf=4.7.0,hdf5=1.10.5,
+    title:                           NOAA/NCEI 1/4 Degree Daily Optimum Inter...
+    institution:                     NOAA/National Centers for Environmental ...
+    source:                          NOAA/NCEI https://www.ncei.noaa.gov/data...
+    References:                      https://www.psl.noaa.gov/data/gridded/da...
+    dataset_title:                   NOAA Daily Optimum Interpolation Sea Sur...
+    version:                         Version 2.1
+    comment:                         Reynolds, et al.(2007) Daily High-Resolu...
+    DODS_EXTRA.Unlimited_Dimension:  time</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-5c22d940-769e-4723-836c-a4e674d0d953' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-5c22d940-769e-4723-836c-a4e674d0d953' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>lat</span>: 720</li><li><span class='xr-has-index'>lon</span>: 1440</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-005b52e0-ba27-4c9e-8e9e-bdfc1c858c8b' class='xr-section-summary-in' type='checkbox'  checked><label for='section-005b52e0-ba27-4c9e-8e9e-bdfc1c858c8b' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>time</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>2024-02-01</div><input id='attrs-c0f087b1-178c-4993-99d2-a68a69934dbe' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-c0f087b1-178c-4993-99d2-a68a69934dbe' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-49a24478-2755-4a77-99c6-d70fbabfe9b9' class='xr-var-data-in' type='checkbox'><label for='data-49a24478-2755-4a77-99c6-d70fbabfe9b9' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Time</dd><dt><span>delta_t :</span></dt><dd>0000-00-01 00:00:00</dd><dt><span>avg_period :</span></dt><dd>0000-00-01 00:00:00</dd><dt><span>axis :</span></dt><dd>T</dd><dt><span>actual_range :</span></dt><dd>[81814. 82179.]</dd><dt><span>_ChunkSizes :</span></dt><dd>512</dd></dl></div><div class='xr-var-data'><pre>array(&#x27;2024-02-01T00:00:00.000000000&#x27;, dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lat</span></div><div class='xr-var-dims'>(lat)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>-89.88 -89.62 ... 89.62 89.88</div><input id='attrs-c5ba9e96-af44-449b-9f90-82056dd0765d' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-c5ba9e96-af44-449b-9f90-82056dd0765d' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-cd098e81-dcd8-408a-88fe-2c7b0851b208' class='xr-var-data-in' type='checkbox'><label for='data-cd098e81-dcd8-408a-88fe-2c7b0851b208' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>actual_range :</span></dt><dd>[-89.875  89.875]</dd><dt><span>axis :</span></dt><dd>Y</dd></dl></div><div class='xr-var-data'><pre>array([-89.875, -89.625, -89.375, ...,  89.375,  89.625,  89.875],
+      dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lon</span></div><div class='xr-var-dims'>(lon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>0.125 0.375 0.625 ... 359.6 359.9</div><input id='attrs-14caf0be-0469-46a9-bffc-a531e5b77a13' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-14caf0be-0469-46a9-bffc-a531e5b77a13' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-c5de9e6d-24e6-43a9-b1ce-24b728a66868' class='xr-var-data-in' type='checkbox'><label for='data-c5de9e6d-24e6-43a9-b1ce-24b728a66868' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>actual_range :</span></dt><dd>[1.25000e-01 3.59875e+02]</dd><dt><span>axis :</span></dt><dd>X</dd></dl></div><div class='xr-var-data'><pre>array([1.25000e-01, 3.75000e-01, 6.25000e-01, ..., 3.59375e+02, 3.59625e+02,
+       3.59875e+02], dtype=float32)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-bec21fb4-47bf-4b22-85d9-892cd05f2d1a' class='xr-section-summary-in' type='checkbox'  checked><label for='section-bec21fb4-47bf-4b22-85d9-892cd05f2d1a' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>sst</span></div><div class='xr-var-dims'>(lat, lon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-138b891b-4ab8-4982-aa1a-8759e5f6ad76' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-138b891b-4ab8-4982-aa1a-8759e5f6ad76' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-c2e3cf48-9d99-41d2-8a1b-e5d2d7254bce' class='xr-var-data-in' type='checkbox'><label for='data-c2e3cf48-9d99-41d2-8a1b-e5d2d7254bce' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Daily Sea Surface Temperature</dd><dt><span>units :</span></dt><dd>degC</dd><dt><span>valid_range :</span></dt><dd>[-3. 45.]</dd><dt><span>precision :</span></dt><dd>2.0</dd><dt><span>dataset :</span></dt><dd>NOAA High-resolution Blended Analysis</dd><dt><span>var_desc :</span></dt><dd>Sea Surface Temperature</dd><dt><span>level_desc :</span></dt><dd>Surface</dd><dt><span>statistic :</span></dt><dd>Mean</dd><dt><span>parent_stat :</span></dt><dd>Individual Observations</dd><dt><span>actual_range :</span></dt><dd>[-1.8  36.13]</dd><dt><span>_ChunkSizes :</span></dt><dd>[   1  720 1440]</dd></dl></div><div class='xr-var-data'><pre>[1036800 values with dtype=float32]</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-847db6bb-f66c-45cb-bb4b-5029e0ae9486' class='xr-section-summary-in' type='checkbox'  ><label for='section-847db6bb-f66c-45cb-bb4b-5029e0ae9486' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>lat</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-4eaa1b2d-2e14-41f9-9494-784e710c703e' class='xr-index-data-in' type='checkbox'/><label for='index-4eaa1b2d-2e14-41f9-9494-784e710c703e' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([-89.875, -89.625, -89.375, -89.125, -88.875, -88.625, -88.375, -88.125,
+       -87.875, -87.625,
+       ...
+        87.625,  87.875,  88.125,  88.375,  88.625,  88.875,  89.125,  89.375,
+        89.625,  89.875],
+      dtype=&#x27;float32&#x27;, name=&#x27;lat&#x27;, length=720))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>lon</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-76c8b45f-114c-44d1-b786-16c8959d2b45' class='xr-index-data-in' type='checkbox'/><label for='index-76c8b45f-114c-44d1-b786-16c8959d2b45' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([  0.125,   0.375,   0.625,   0.875,   1.125,   1.375,   1.625,   1.875,
+         2.125,   2.375,
+       ...
+       357.625, 357.875, 358.125, 358.375, 358.625, 358.875, 359.125, 359.375,
+       359.625, 359.875],
+      dtype=&#x27;float32&#x27;, name=&#x27;lon&#x27;, length=1440))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-d8910d2c-0d87-4f1a-9ef6-73c4e6d72c08' class='xr-section-summary-in' type='checkbox'  ><label for='section-d8910d2c-0d87-4f1a-9ef6-73c4e6d72c08' class='xr-section-summary' >Attributes: <span>(10)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>Conventions :</span></dt><dd>CF-1.5</dd><dt><span>_NCProperties :</span></dt><dd>version=2,netcdf=4.7.0,hdf5=1.10.5,</dd><dt><span>title :</span></dt><dd>NOAA/NCEI 1/4 Degree Daily Optimum Interpolation Sea Surface Temperature (OISST) Analysis, Version 2.1</dd><dt><span>institution :</span></dt><dd>NOAA/National Centers for Environmental Information</dd><dt><span>source :</span></dt><dd>NOAA/NCEI https://www.ncei.noaa.gov/data/sea-surface-temperature-optimum-interpolation/v2.1/access/avhrr/</dd><dt><span>References :</span></dt><dd>https://www.psl.noaa.gov/data/gridded/data.noaa.oisst.v2.highres.html</dd><dt><span>dataset_title :</span></dt><dd>NOAA Daily Optimum Interpolation Sea Surface Temperature</dd><dt><span>version :</span></dt><dd>Version 2.1</dd><dt><span>comment :</span></dt><dd>Reynolds, et al.(2007) Daily High-Resolution-Blended Analyses for Sea Surface Temperature (available at https://doi.org/10.1175/2007JCLI1824.1). Banzon, et al.(2016) A long-term record of blended satellite and in situ sea-surface temperature for climate monitoring, modeling and environmental studies (available at https://doi.org/10.5194/essd-8-165-2016). Huang, B., C. Liu, V. Banzon, E. Freeman, G. Graham, B. Hankins, T. Smith, and H.-M. Zhang, 2021: Improvements of the Daily Optimum Interpolation Sea Surface Temperature (DOISST) Version 2.1 (available at https://doi.org/10.1175/JCLI-D-20-0166.1). Anomaly is based on 1971-2000 OI.v2 SST. Satellite data: multi-satellite sensor (AVHRR+VIIRS) data. Ice data: NCEP Ice and GSFC Ice. Data less than 15 days old may be subject to revision.</dd><dt><span>DODS_EXTRA.Unlimited_Dimension :</span></dt><dd>time</dd></dl></div></li></ul></div></div></div></div>
+</div>
+<p>The data have 3 dimensions, <code class="docutils literal notranslate"><span class="pre">time</span></code>, <code class="docutils literal notranslate"><span class="pre">lat</span></code> and <code class="docutils literal notranslate"><span class="pre">lon</span></code>. Upon selecting the sea surface temperature (<code class="docutils literal notranslate"><span class="pre">sst</span></code>) data for a single date, we have a 2 dimensional array. Each variable has metadata associated it, and the dataset as a whole has 66 <em>global</em> attributes.</p>
+<p>Let’s have a look at the variable attributes for the <code class="docutils literal notranslate"><span class="pre">sst</span></code> variable for example.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xrds</span><span class="p">[</span><span class="s1">&#39;sst&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;long_name&#39;: &#39;Daily Sea Surface Temperature&#39;,
+ &#39;units&#39;: &#39;degC&#39;,
+ &#39;valid_range&#39;: array([-3., 45.], dtype=float32),
+ &#39;precision&#39;: 2.0,
+ &#39;dataset&#39;: &#39;NOAA High-resolution Blended Analysis&#39;,
+ &#39;var_desc&#39;: &#39;Sea Surface Temperature&#39;,
+ &#39;level_desc&#39;: &#39;Surface&#39;,
+ &#39;statistic&#39;: &#39;Mean&#39;,
+ &#39;parent_stat&#39;: &#39;Individual Observations&#39;,
+ &#39;actual_range&#39;: array([-1.8 , 36.13], dtype=float32),
+ &#39;_ChunkSizes&#39;: array([   1,  720, 1440], dtype=int32)}
+</pre></div>
+</div>
+</div>
+</div>
+<p>One noteable attribute is missing. According to the Climate &amp; Forecast (CF) conventions, variables should in most cases have a <code class="docutils literal notranslate"><span class="pre">standard_name</span></code> variable attribute. One could suggest that the data are not FAIR-compliant without this, since the <code class="docutils literal notranslate"><span class="pre">standard_name</span></code> provides a standardised, machine-readable name for the variable. Terms can be taken the CF standard name table found at:</p>
+<p><a class="reference external" href="https://cfconventions.org/Data/cf-standard-names/current/build/cf-standard-name-table.html">https://cfconventions.org/Data/cf-standard-names/current/build/cf-standard-name-table.html</a></p>
+<p>Standard names are accompanied by a description for the data. The data provider should have carefully read the description upon selecting the standard name, and the data user can also read the description, so the data user and provider share some common understanding about what the data are.</p>
+<p>If the data providers are reading this, please add this!</p>
+</section>
+<section id="writing-the-data-to-a-csv-file">
+<h3>Writing the data to a CSV file<a class="headerlink" href="#writing-the-data-to-a-csv-file" title="Permalink to this heading">#</a></h3>
+<p>You can write all or a subset of the data to a pandas dataframe that you can export as a CSV file.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">desired_date</span> <span class="o">=</span> <span class="s1">&#39;2024-02-01&#39;</span>
+<span class="n">year</span> <span class="o">=</span> <span class="n">desired_date</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://psl.noaa.gov/thredds/dodsC/Datasets/noaa.oisst.v2.highres/sst.day.mean.</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">.nc&#39;</span>
+<span class="n">xrds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+<span class="n">ds_one_day</span> <span class="o">=</span> <span class="n">xrds</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span> <span class="o">=</span> <span class="n">desired_date</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">ds_one_day</span><span class="p">[</span><span class="s1">&#39;sst&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>time</th>
+      <th>sst</th>
+    </tr>
+    <tr>
+      <th>lat</th>
+      <th>lon</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="5" valign="top">-89.875</th>
+      <th>0.125</th>
+      <td>2024-02-01</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>0.375</th>
+      <td>2024-02-01</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>0.625</th>
+      <td>2024-02-01</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>0.875</th>
+      <td>2024-02-01</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1.125</th>
+      <td>2024-02-01</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;global_sea_surface_temperatures.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="plotting-the-data-for-a-day-of-our-choosing">
+<h3>Plotting the data for a day of our choosing<a class="headerlink" href="#plotting-the-data-for-a-day-of-our-choosing" title="Permalink to this heading">#</a></h3>
+<p>Let’s use the code we used above to first isolate the data for a single day, then let’s build on that to quickly plot the data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">desired_date</span> <span class="o">=</span> <span class="s1">&#39;2024-02-01&#39;</span>
+<span class="n">year</span> <span class="o">=</span> <span class="n">desired_date</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://psl.noaa.gov/thredds/dodsC/Datasets/noaa.oisst.v2.highres/sst.day.mean.</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">.nc&#39;</span>
+<span class="n">xrds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+<span class="n">ds_one_day</span> <span class="o">=</span> <span class="n">xrds</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span> <span class="o">=</span> <span class="n">desired_date</span><span class="p">)</span>
+<span class="n">ds_one_day</span><span class="p">[</span><span class="s1">&#39;sst&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you accidentally select a date that isn’t present in the time series, you can use <code class="docutils literal notranslate"><span class="pre">method</span> <span class="pre">=</span> <span class="pre">'nearest'</span></code> to select the data from the nearest timestamp to the date you provide. Other methods can also be used, you can read about this here:</p>
+<p><a class="reference external" href="https://docs.xarray.dev/en/latest/generated/xarray.Dataset.sel.html#xarray-dataset-sel">https://docs.xarray.dev/en/latest/generated/xarray.Dataset.sel.html#xarray-dataset-sel</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds_one_day</span> <span class="o">=</span> <span class="n">xrds</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span> <span class="o">=</span> <span class="n">desired_date</span> <span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Without the coastlines these data are difficult to interpret. Let’s now explore how to improve this plot and perhaps use some different projections.</p>
+<section id="full-working-example">
+<h4>Full working example<a class="headerlink" href="#full-working-example" title="Permalink to this heading">#</a></h4>
+<p>Below is a full working example you can copy and play with.</p>
+<ul class="simple">
+<li><p>Map projections: <a class="reference external" href="https://scitools.org.uk/cartopy/docs/v0.15/crs/projections.html">https://scitools.org.uk/cartopy/docs/v0.15/crs/projections.html</a></p></li>
+<li><p>Matplotlib built-in colourmaps: <a class="reference external" href="https://matplotlib.org/stable/users/explain/colors/colormaps.html">https://matplotlib.org/stable/users/explain/colors/colormaps.html</a></p></li>
+<li><p>Colourmaps for oceanography from <code class="docutils literal notranslate"><span class="pre">cmocean</span></code>: <a class="reference external" href="https://matplotlib.org/cmocean/">https://matplotlib.org/cmocean/</a></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
+<span class="kn">import</span> <span class="nn">cartopy.feature</span> <span class="k">as</span> <span class="nn">cfeature</span>
+
+<span class="n">desired_date</span> <span class="o">=</span> <span class="s1">&#39;2024-02-01&#39;</span>
+<span class="n">year</span> <span class="o">=</span> <span class="n">desired_date</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">projection</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">Mollweide</span><span class="p">()</span>
+<span class="n">transform</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">()</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">projection</span><span class="p">)</span>
+
+<span class="c1"># Load and plot the sea surface temperature data</span>
+<span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://psl.noaa.gov/thredds/dodsC/Datasets/noaa.oisst.v2.highres/sst.day.mean.</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">.nc&#39;</span>
+<span class="n">xrds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+<span class="n">xrds</span> <span class="o">=</span> <span class="n">xrds</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span> <span class="o">=</span> <span class="n">desired_date</span><span class="p">)</span>
+<span class="n">sst</span> <span class="o">=</span> <span class="n">xrds</span><span class="p">[</span><span class="s1">&#39;sst&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">xrds</span><span class="p">[</span><span class="s1">&#39;sst&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">vmin</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="n">vmax</span> <span class="o">=</span> <span class="mi">34</span>
+
+<span class="n">sst</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;jet&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cfeature</span><span class="o">.</span><span class="n">LAND</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;sea_water_temperatures.png&#39;</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/389c0f3cd9a0f8924ce36d034cc7a64acdbc4700968484a4049507487970b995.png" src="_images/389c0f3cd9a0f8924ce36d034cc7a64acdbc4700968484a4049507487970b995.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="adding-a-mask-for-sea-ice">
+<h3>Adding a mask for sea ice<a class="headerlink" href="#adding-a-mask-for-sea-ice" title="Permalink to this heading">#</a></h3>
+<p>The dataset also includes sea ice concentration data. Let’s mask the sea surface temperature data anywhere that the sea ice concentration is greater than 0.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
+<span class="kn">import</span> <span class="nn">cartopy.feature</span> <span class="k">as</span> <span class="nn">cfeature</span>
+
+<span class="n">desired_date</span> <span class="o">=</span> <span class="s1">&#39;2024-02-01&#39;</span>
+<span class="n">year</span> <span class="o">=</span> <span class="n">desired_date</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">projection</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">Mollweide</span><span class="p">()</span>
+<span class="n">transform</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">()</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">projection</span><span class="p">)</span>
+
+<span class="c1"># Load and plot the sea surface temperature data</span>
+<span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://psl.noaa.gov/thredds/dodsC/Datasets/noaa.oisst.v2.highres/sst.day.mean.</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">.nc&#39;</span>
+<span class="n">xrds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+<span class="n">xrds</span> <span class="o">=</span> <span class="n">xrds</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span> <span class="o">=</span> <span class="n">desired_date</span><span class="p">)</span>
+<span class="n">sst</span> <span class="o">=</span> <span class="n">xrds</span><span class="p">[</span><span class="s1">&#39;sst&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">xrds</span><span class="p">[</span><span class="s1">&#39;sst&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">vmin</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="n">vmax</span> <span class="o">=</span> <span class="mi">34</span>
+
+<span class="n">sst</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;jet&#39;</span><span class="p">)</span>
+
+<span class="c1"># Load and plot the sea ice</span>
+<span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;http://psl.noaa.gov/thredds/dodsC/Datasets/noaa.oisst.v2.highres/icec.day.mean.</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">.nc&#39;</span>
+<span class="n">xrds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+<span class="n">xrds</span> <span class="o">=</span> <span class="n">xrds</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span> <span class="o">=</span> <span class="n">desired_date</span><span class="p">)</span>
+<span class="n">ice_mask</span> <span class="o">=</span> <span class="n">xrds</span><span class="p">[</span><span class="s1">&#39;icec&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">xrds</span><span class="p">[</span><span class="s1">&#39;icec&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="n">ice_mask</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Greys&#39;</span><span class="p">,</span> <span class="n">add_colorbar</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cfeature</span><span class="o">.</span><span class="n">LAND</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;sea_water_temperatures.png&#39;</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/8ade242a567043012c8f1d48cd2990e8873088eeea1220e99c2b71bdfe22e8e8.png" src="_images/8ade242a567043012c8f1d48cd2990e8873088eeea1220e99c2b71bdfe22e8e8.png" />
+</div>
+</div>
+</section>
+<section id="zooming-in-on-area-of-interest">
+<h3>Zooming in on area of interest<a class="headerlink" href="#zooming-in-on-area-of-interest" title="Permalink to this heading">#</a></h3>
+<p>Let’s now provide a latitude and longitude range to zoom in on.</p>
+<p>If you have an xarray object, for example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">desired_date</span> <span class="o">=</span> <span class="s1">&#39;2024-08-01&#39;</span>
+<span class="n">year</span> <span class="o">=</span> <span class="n">desired_date</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://psl.noaa.gov/thredds/dodsC/Datasets/noaa.oisst.v2.highres/sst.day.mean.</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">.nc&#39;</span>
+<span class="n">xrds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+<span class="n">ds_one_day</span> <span class="o">=</span> <span class="n">xrds</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span> <span class="o">=</span> <span class="n">desired_date</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s first take a subset of that for our desired range</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lat_range</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">36</span><span class="p">,</span> <span class="mi">74</span><span class="p">)</span>
+<span class="n">lon_range</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">45</span><span class="p">)</span>
+<span class="n">ds_aoi</span> <span class="o">=</span> <span class="n">ds_one_day</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">lat</span><span class="o">=</span><span class="n">lat_range</span><span class="p">,</span> <span class="n">lon</span><span class="o">=</span><span class="n">lon_range</span><span class="p">)</span>
+<span class="n">ds_aoi</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme="dark"],
+html[data-theme="dark"],
+body[data-theme="dark"],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1f1f1f;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block !important;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 0 20px 0 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: inline-block;
+  opacity: 0;
+  height: 0;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:focus + label {
+  border: 2px solid var(--xr-font-color0);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: "►";
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: "▼";
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: "(";
+}
+
+.xr-dim-list:after {
+  content: ")";
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ",";
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-index-name div,
+.xr-index-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2,
+.xr-no-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.Dataset&gt; Size: 111kB
+Dimensions:  (lat: 152, lon: 180)
+Coordinates:
+    time     datetime64[ns] 8B 2024-08-01
+  * lat      (lat) float32 608B 36.12 36.38 36.62 36.88 ... 73.38 73.62 73.88
+  * lon      (lon) float32 720B 0.125 0.375 0.625 0.875 ... 44.38 44.62 44.88
+Data variables:
+    sst      (lat, lon) float32 109kB ...
+Attributes:
+    Conventions:                     CF-1.5
+    _NCProperties:                   version=2,netcdf=4.7.0,hdf5=1.10.5,
+    title:                           NOAA/NCEI 1/4 Degree Daily Optimum Inter...
+    institution:                     NOAA/National Centers for Environmental ...
+    source:                          NOAA/NCEI https://www.ncei.noaa.gov/data...
+    References:                      https://www.psl.noaa.gov/data/gridded/da...
+    dataset_title:                   NOAA Daily Optimum Interpolation Sea Sur...
+    version:                         Version 2.1
+    comment:                         Reynolds, et al.(2007) Daily High-Resolu...
+    DODS_EXTRA.Unlimited_Dimension:  time</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-61968b6a-a19e-4bf2-a2b8-2b7be9cf7b16' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-61968b6a-a19e-4bf2-a2b8-2b7be9cf7b16' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>lat</span>: 152</li><li><span class='xr-has-index'>lon</span>: 180</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-dbf53baa-5baf-4e0b-9aea-05381a682c92' class='xr-section-summary-in' type='checkbox'  checked><label for='section-dbf53baa-5baf-4e0b-9aea-05381a682c92' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>time</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>2024-08-01</div><input id='attrs-62ff4350-79bc-4941-aa0e-cd9495abed50' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-62ff4350-79bc-4941-aa0e-cd9495abed50' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-57c0f0af-62d6-48fe-936f-0a0c15fec14d' class='xr-var-data-in' type='checkbox'><label for='data-57c0f0af-62d6-48fe-936f-0a0c15fec14d' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Time</dd><dt><span>delta_t :</span></dt><dd>0000-00-01 00:00:00</dd><dt><span>avg_period :</span></dt><dd>0000-00-01 00:00:00</dd><dt><span>axis :</span></dt><dd>T</dd><dt><span>actual_range :</span></dt><dd>[81814. 82179.]</dd><dt><span>_ChunkSizes :</span></dt><dd>512</dd></dl></div><div class='xr-var-data'><pre>array(&#x27;2024-08-01T00:00:00.000000000&#x27;, dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lat</span></div><div class='xr-var-dims'>(lat)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>36.12 36.38 36.62 ... 73.62 73.88</div><input id='attrs-4e0f64d0-c0e5-4501-af5f-d3d7e1b60b66' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-4e0f64d0-c0e5-4501-af5f-d3d7e1b60b66' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-5c4d0471-5ef9-4ea5-b309-146cfd4ed718' class='xr-var-data-in' type='checkbox'><label for='data-5c4d0471-5ef9-4ea5-b309-146cfd4ed718' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>actual_range :</span></dt><dd>[-89.875  89.875]</dd><dt><span>axis :</span></dt><dd>Y</dd></dl></div><div class='xr-var-data'><pre>array([36.125, 36.375, 36.625, 36.875, 37.125, 37.375, 37.625, 37.875, 38.125,
+       38.375, 38.625, 38.875, 39.125, 39.375, 39.625, 39.875, 40.125, 40.375,
+       40.625, 40.875, 41.125, 41.375, 41.625, 41.875, 42.125, 42.375, 42.625,
+       42.875, 43.125, 43.375, 43.625, 43.875, 44.125, 44.375, 44.625, 44.875,
+       45.125, 45.375, 45.625, 45.875, 46.125, 46.375, 46.625, 46.875, 47.125,
+       47.375, 47.625, 47.875, 48.125, 48.375, 48.625, 48.875, 49.125, 49.375,
+       49.625, 49.875, 50.125, 50.375, 50.625, 50.875, 51.125, 51.375, 51.625,
+       51.875, 52.125, 52.375, 52.625, 52.875, 53.125, 53.375, 53.625, 53.875,
+       54.125, 54.375, 54.625, 54.875, 55.125, 55.375, 55.625, 55.875, 56.125,
+       56.375, 56.625, 56.875, 57.125, 57.375, 57.625, 57.875, 58.125, 58.375,
+       58.625, 58.875, 59.125, 59.375, 59.625, 59.875, 60.125, 60.375, 60.625,
+       60.875, 61.125, 61.375, 61.625, 61.875, 62.125, 62.375, 62.625, 62.875,
+       63.125, 63.375, 63.625, 63.875, 64.125, 64.375, 64.625, 64.875, 65.125,
+       65.375, 65.625, 65.875, 66.125, 66.375, 66.625, 66.875, 67.125, 67.375,
+       67.625, 67.875, 68.125, 68.375, 68.625, 68.875, 69.125, 69.375, 69.625,
+       69.875, 70.125, 70.375, 70.625, 70.875, 71.125, 71.375, 71.625, 71.875,
+       72.125, 72.375, 72.625, 72.875, 73.125, 73.375, 73.625, 73.875],
+      dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lon</span></div><div class='xr-var-dims'>(lon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>0.125 0.375 0.625 ... 44.62 44.88</div><input id='attrs-77de0d95-e3d7-4246-a5c8-e21072dc705c' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-77de0d95-e3d7-4246-a5c8-e21072dc705c' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-f0b0e796-9d58-412b-88f4-205e7a5c3a5e' class='xr-var-data-in' type='checkbox'><label for='data-f0b0e796-9d58-412b-88f4-205e7a5c3a5e' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>actual_range :</span></dt><dd>[1.25000e-01 3.59875e+02]</dd><dt><span>axis :</span></dt><dd>X</dd></dl></div><div class='xr-var-data'><pre>array([ 0.125,  0.375,  0.625,  0.875,  1.125,  1.375,  1.625,  1.875,  2.125,
+        2.375,  2.625,  2.875,  3.125,  3.375,  3.625,  3.875,  4.125,  4.375,
+        4.625,  4.875,  5.125,  5.375,  5.625,  5.875,  6.125,  6.375,  6.625,
+        6.875,  7.125,  7.375,  7.625,  7.875,  8.125,  8.375,  8.625,  8.875,
+        9.125,  9.375,  9.625,  9.875, 10.125, 10.375, 10.625, 10.875, 11.125,
+       11.375, 11.625, 11.875, 12.125, 12.375, 12.625, 12.875, 13.125, 13.375,
+       13.625, 13.875, 14.125, 14.375, 14.625, 14.875, 15.125, 15.375, 15.625,
+       15.875, 16.125, 16.375, 16.625, 16.875, 17.125, 17.375, 17.625, 17.875,
+       18.125, 18.375, 18.625, 18.875, 19.125, 19.375, 19.625, 19.875, 20.125,
+       20.375, 20.625, 20.875, 21.125, 21.375, 21.625, 21.875, 22.125, 22.375,
+       22.625, 22.875, 23.125, 23.375, 23.625, 23.875, 24.125, 24.375, 24.625,
+       24.875, 25.125, 25.375, 25.625, 25.875, 26.125, 26.375, 26.625, 26.875,
+       27.125, 27.375, 27.625, 27.875, 28.125, 28.375, 28.625, 28.875, 29.125,
+       29.375, 29.625, 29.875, 30.125, 30.375, 30.625, 30.875, 31.125, 31.375,
+       31.625, 31.875, 32.125, 32.375, 32.625, 32.875, 33.125, 33.375, 33.625,
+       33.875, 34.125, 34.375, 34.625, 34.875, 35.125, 35.375, 35.625, 35.875,
+       36.125, 36.375, 36.625, 36.875, 37.125, 37.375, 37.625, 37.875, 38.125,
+       38.375, 38.625, 38.875, 39.125, 39.375, 39.625, 39.875, 40.125, 40.375,
+       40.625, 40.875, 41.125, 41.375, 41.625, 41.875, 42.125, 42.375, 42.625,
+       42.875, 43.125, 43.375, 43.625, 43.875, 44.125, 44.375, 44.625, 44.875],
+      dtype=float32)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-3dbedc43-02da-4b6a-b26b-8a236fe1e61f' class='xr-section-summary-in' type='checkbox'  checked><label for='section-3dbedc43-02da-4b6a-b26b-8a236fe1e61f' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>sst</span></div><div class='xr-var-dims'>(lat, lon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-0f5e6577-1a1c-4aa3-a03d-6ef9ac598297' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-0f5e6577-1a1c-4aa3-a03d-6ef9ac598297' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-c01db21b-969f-4adc-9adc-a9bfe7c6e376' class='xr-var-data-in' type='checkbox'><label for='data-c01db21b-969f-4adc-9adc-a9bfe7c6e376' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Daily Sea Surface Temperature</dd><dt><span>units :</span></dt><dd>degC</dd><dt><span>valid_range :</span></dt><dd>[-3. 45.]</dd><dt><span>precision :</span></dt><dd>2.0</dd><dt><span>dataset :</span></dt><dd>NOAA High-resolution Blended Analysis</dd><dt><span>var_desc :</span></dt><dd>Sea Surface Temperature</dd><dt><span>level_desc :</span></dt><dd>Surface</dd><dt><span>statistic :</span></dt><dd>Mean</dd><dt><span>parent_stat :</span></dt><dd>Individual Observations</dd><dt><span>actual_range :</span></dt><dd>[-1.8  36.13]</dd><dt><span>_ChunkSizes :</span></dt><dd>[   1  720 1440]</dd></dl></div><div class='xr-var-data'><pre>[27360 values with dtype=float32]</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-79311af4-d344-4bcf-8ccd-3fbf68b8d713' class='xr-section-summary-in' type='checkbox'  ><label for='section-79311af4-d344-4bcf-8ccd-3fbf68b8d713' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>lat</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-ce1cbcf3-951b-478a-a251-7382fc807d3f' class='xr-index-data-in' type='checkbox'/><label for='index-ce1cbcf3-951b-478a-a251-7382fc807d3f' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([36.125, 36.375, 36.625, 36.875, 37.125, 37.375, 37.625, 37.875, 38.125,
+       38.375,
+       ...
+       71.625, 71.875, 72.125, 72.375, 72.625, 72.875, 73.125, 73.375, 73.625,
+       73.875],
+      dtype=&#x27;float32&#x27;, name=&#x27;lat&#x27;, length=152))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>lon</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-1428d1b3-1288-4f9b-af3f-62d4cfc16285' class='xr-index-data-in' type='checkbox'/><label for='index-1428d1b3-1288-4f9b-af3f-62d4cfc16285' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([ 0.125,  0.375,  0.625,  0.875,  1.125,  1.375,  1.625,  1.875,  2.125,
+        2.375,
+       ...
+       42.625, 42.875, 43.125, 43.375, 43.625, 43.875, 44.125, 44.375, 44.625,
+       44.875],
+      dtype=&#x27;float32&#x27;, name=&#x27;lon&#x27;, length=180))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-08b67067-e6c8-4d76-a6b9-6071f1922522' class='xr-section-summary-in' type='checkbox'  ><label for='section-08b67067-e6c8-4d76-a6b9-6071f1922522' class='xr-section-summary' >Attributes: <span>(10)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>Conventions :</span></dt><dd>CF-1.5</dd><dt><span>_NCProperties :</span></dt><dd>version=2,netcdf=4.7.0,hdf5=1.10.5,</dd><dt><span>title :</span></dt><dd>NOAA/NCEI 1/4 Degree Daily Optimum Interpolation Sea Surface Temperature (OISST) Analysis, Version 2.1</dd><dt><span>institution :</span></dt><dd>NOAA/National Centers for Environmental Information</dd><dt><span>source :</span></dt><dd>NOAA/NCEI https://www.ncei.noaa.gov/data/sea-surface-temperature-optimum-interpolation/v2.1/access/avhrr/</dd><dt><span>References :</span></dt><dd>https://www.psl.noaa.gov/data/gridded/data.noaa.oisst.v2.highres.html</dd><dt><span>dataset_title :</span></dt><dd>NOAA Daily Optimum Interpolation Sea Surface Temperature</dd><dt><span>version :</span></dt><dd>Version 2.1</dd><dt><span>comment :</span></dt><dd>Reynolds, et al.(2007) Daily High-Resolution-Blended Analyses for Sea Surface Temperature (available at https://doi.org/10.1175/2007JCLI1824.1). Banzon, et al.(2016) A long-term record of blended satellite and in situ sea-surface temperature for climate monitoring, modeling and environmental studies (available at https://doi.org/10.5194/essd-8-165-2016). Huang, B., C. Liu, V. Banzon, E. Freeman, G. Graham, B. Hankins, T. Smith, and H.-M. Zhang, 2021: Improvements of the Daily Optimum Interpolation Sea Surface Temperature (DOISST) Version 2.1 (available at https://doi.org/10.1175/JCLI-D-20-0166.1). Anomaly is based on 1971-2000 OI.v2 SST. Satellite data: multi-satellite sensor (AVHRR+VIIRS) data. Ice data: NCEP Ice and GSFC Ice. Data less than 15 days old may be subject to revision.</dd><dt><span>DODS_EXTRA.Unlimited_Dimension :</span></dt><dd>time</dd></dl></div></li></ul></div></div></div></div>
+</div>
+<p>This can be more complicated if you need to handled wrapped longitude ranges. You can do this instead.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_aoi</span> <span class="o">=</span> <span class="n">ds_one_day</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span>
+    <span class="n">lat</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mi">36</span><span class="p">,</span> <span class="mi">74</span><span class="p">),</span> <span class="n">lon</span><span class="o">=</span><span class="p">((</span><span class="n">ds_one_day</span><span class="o">.</span><span class="n">lon</span> <span class="o">&gt;=</span> <span class="mi">335</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">ds_one_day</span><span class="o">.</span><span class="n">lon</span> <span class="o">&lt;=</span> <span class="mi">45</span><span class="p">))</span>
+<span class="p">)</span>
+<span class="n">data_aoi</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1.25000e-01, 3.75000e-01, 6.25000e-01, 8.75000e-01, 1.12500e+00,
+       1.37500e+00, 1.62500e+00, 1.87500e+00, 2.12500e+00, 2.37500e+00,
+       2.62500e+00, 2.87500e+00, 3.12500e+00, 3.37500e+00, 3.62500e+00,
+       3.87500e+00, 4.12500e+00, 4.37500e+00, 4.62500e+00, 4.87500e+00,
+       5.12500e+00, 5.37500e+00, 5.62500e+00, 5.87500e+00, 6.12500e+00,
+       6.37500e+00, 6.62500e+00, 6.87500e+00, 7.12500e+00, 7.37500e+00,
+       7.62500e+00, 7.87500e+00, 8.12500e+00, 8.37500e+00, 8.62500e+00,
+       8.87500e+00, 9.12500e+00, 9.37500e+00, 9.62500e+00, 9.87500e+00,
+       1.01250e+01, 1.03750e+01, 1.06250e+01, 1.08750e+01, 1.11250e+01,
+       1.13750e+01, 1.16250e+01, 1.18750e+01, 1.21250e+01, 1.23750e+01,
+       1.26250e+01, 1.28750e+01, 1.31250e+01, 1.33750e+01, 1.36250e+01,
+       1.38750e+01, 1.41250e+01, 1.43750e+01, 1.46250e+01, 1.48750e+01,
+       1.51250e+01, 1.53750e+01, 1.56250e+01, 1.58750e+01, 1.61250e+01,
+       1.63750e+01, 1.66250e+01, 1.68750e+01, 1.71250e+01, 1.73750e+01,
+       1.76250e+01, 1.78750e+01, 1.81250e+01, 1.83750e+01, 1.86250e+01,
+       1.88750e+01, 1.91250e+01, 1.93750e+01, 1.96250e+01, 1.98750e+01,
+       2.01250e+01, 2.03750e+01, 2.06250e+01, 2.08750e+01, 2.11250e+01,
+       2.13750e+01, 2.16250e+01, 2.18750e+01, 2.21250e+01, 2.23750e+01,
+       2.26250e+01, 2.28750e+01, 2.31250e+01, 2.33750e+01, 2.36250e+01,
+       2.38750e+01, 2.41250e+01, 2.43750e+01, 2.46250e+01, 2.48750e+01,
+       2.51250e+01, 2.53750e+01, 2.56250e+01, 2.58750e+01, 2.61250e+01,
+       2.63750e+01, 2.66250e+01, 2.68750e+01, 2.71250e+01, 2.73750e+01,
+       2.76250e+01, 2.78750e+01, 2.81250e+01, 2.83750e+01, 2.86250e+01,
+       2.88750e+01, 2.91250e+01, 2.93750e+01, 2.96250e+01, 2.98750e+01,
+       3.01250e+01, 3.03750e+01, 3.06250e+01, 3.08750e+01, 3.11250e+01,
+       3.13750e+01, 3.16250e+01, 3.18750e+01, 3.21250e+01, 3.23750e+01,
+       3.26250e+01, 3.28750e+01, 3.31250e+01, 3.33750e+01, 3.36250e+01,
+       3.38750e+01, 3.41250e+01, 3.43750e+01, 3.46250e+01, 3.48750e+01,
+       3.51250e+01, 3.53750e+01, 3.56250e+01, 3.58750e+01, 3.61250e+01,
+       3.63750e+01, 3.66250e+01, 3.68750e+01, 3.71250e+01, 3.73750e+01,
+       3.76250e+01, 3.78750e+01, 3.81250e+01, 3.83750e+01, 3.86250e+01,
+       3.88750e+01, 3.91250e+01, 3.93750e+01, 3.96250e+01, 3.98750e+01,
+       4.01250e+01, 4.03750e+01, 4.06250e+01, 4.08750e+01, 4.11250e+01,
+       4.13750e+01, 4.16250e+01, 4.18750e+01, 4.21250e+01, 4.23750e+01,
+       4.26250e+01, 4.28750e+01, 4.31250e+01, 4.33750e+01, 4.36250e+01,
+       4.38750e+01, 4.41250e+01, 4.43750e+01, 4.46250e+01, 4.48750e+01,
+       3.35125e+02, 3.35375e+02, 3.35625e+02, 3.35875e+02, 3.36125e+02,
+       3.36375e+02, 3.36625e+02, 3.36875e+02, 3.37125e+02, 3.37375e+02,
+       3.37625e+02, 3.37875e+02, 3.38125e+02, 3.38375e+02, 3.38625e+02,
+       3.38875e+02, 3.39125e+02, 3.39375e+02, 3.39625e+02, 3.39875e+02,
+       3.40125e+02, 3.40375e+02, 3.40625e+02, 3.40875e+02, 3.41125e+02,
+       3.41375e+02, 3.41625e+02, 3.41875e+02, 3.42125e+02, 3.42375e+02,
+       3.42625e+02, 3.42875e+02, 3.43125e+02, 3.43375e+02, 3.43625e+02,
+       3.43875e+02, 3.44125e+02, 3.44375e+02, 3.44625e+02, 3.44875e+02,
+       3.45125e+02, 3.45375e+02, 3.45625e+02, 3.45875e+02, 3.46125e+02,
+       3.46375e+02, 3.46625e+02, 3.46875e+02, 3.47125e+02, 3.47375e+02,
+       3.47625e+02, 3.47875e+02, 3.48125e+02, 3.48375e+02, 3.48625e+02,
+       3.48875e+02, 3.49125e+02, 3.49375e+02, 3.49625e+02, 3.49875e+02,
+       3.50125e+02, 3.50375e+02, 3.50625e+02, 3.50875e+02, 3.51125e+02,
+       3.51375e+02, 3.51625e+02, 3.51875e+02, 3.52125e+02, 3.52375e+02,
+       3.52625e+02, 3.52875e+02, 3.53125e+02, 3.53375e+02, 3.53625e+02,
+       3.53875e+02, 3.54125e+02, 3.54375e+02, 3.54625e+02, 3.54875e+02,
+       3.55125e+02, 3.55375e+02, 3.55625e+02, 3.55875e+02, 3.56125e+02,
+       3.56375e+02, 3.56625e+02, 3.56875e+02, 3.57125e+02, 3.57375e+02,
+       3.57625e+02, 3.57875e+02, 3.58125e+02, 3.58375e+02, 3.58625e+02,
+       3.58875e+02, 3.59125e+02, 3.59375e+02, 3.59625e+02, 3.59875e+02],
+      dtype=float32)
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can then proceed to plotting the data as normal.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">projection</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">EuroPP</span><span class="p">()</span>
+<span class="n">transform</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">projection</span><span class="p">)</span>
+
+<span class="n">vmin</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="n">vmax</span> <span class="o">=</span> <span class="mi">34</span>
+<span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;jet&#39;</span>
+
+<span class="n">data_aoi</span><span class="p">[</span><span class="s1">&#39;sst&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+    <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">,</span>
+    <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span>
+    <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span> 
+    <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span>
+<span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cfeature</span><span class="o">.</span><span class="n">LAND</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/5889542f41037bd0a51bb8bb5c1f84b0fd124ff33941b26a37a6d8a707bb9a22.png" src="_images/5889542f41037bd0a51bb8bb5c1f84b0fd124ff33941b26a37a6d8a707bb9a22.png" />
+</div>
+</div>
+</section>
+<section id="finding-the-sea-surface-temperature-at-a-given-location-and-date">
+<h3>Finding the sea surface temperature at a given location and date<a class="headerlink" href="#finding-the-sea-surface-temperature-at-a-given-location-and-date" title="Permalink to this heading">#</a></h3>
+<p>Let’s now look at how to find the value for the sea surface temperature at a given location and time. We will using the method <code class="docutils literal notranslate"><span class="pre">nearest</span></code> to find the nearest value to our selected point, though other methods are available.
+<a class="reference external" href="https://docs.xarray.dev/en/latest/generated/xarray.Dataset.sel.html">https://docs.xarray.dev/en/latest/generated/xarray.Dataset.sel.html</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+
+<span class="n">desired_date</span> <span class="o">=</span> <span class="s1">&#39;2024-02-01&#39;</span>
+<span class="n">desired_latitude</span> <span class="o">=</span> <span class="mf">73.5624</span>
+<span class="n">desired_longitude</span> <span class="o">=</span> <span class="mf">30.0142</span>
+
+<span class="n">year</span> <span class="o">=</span> <span class="n">desired_date</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Load and plot the sea surface temperature data</span>
+<span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://psl.noaa.gov/thredds/dodsC/Datasets/noaa.oisst.v2.highres/sst.day.mean.</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">.nc&#39;</span>
+<span class="n">xrds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+<span class="n">sst_value</span> <span class="o">=</span> <span class="n">xrds</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span>
+    <span class="n">time</span> <span class="o">=</span> <span class="n">desired_date</span><span class="p">,</span>
+    <span class="n">lat</span> <span class="o">=</span> <span class="n">desired_latitude</span><span class="p">,</span>
+    <span class="n">lon</span> <span class="o">=</span> <span class="n">desired_longitude</span><span class="p">,</span>
+    <span class="n">method</span> <span class="o">=</span> <span class="s1">&#39;nearest&#39;</span>
+<span class="p">)[</span><span class="s1">&#39;sst&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">sst_value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.87
+</pre></div>
+</div>
+</div>
+</div>
+<p>We might also want to find out what latitude, longitude and time that value corresponds to.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+
+<span class="n">desired_date</span> <span class="o">=</span> <span class="s1">&#39;2024-02-01&#39;</span>
+<span class="n">desired_latitude</span> <span class="o">=</span> <span class="mf">73.5624</span>
+<span class="n">desired_longitude</span> <span class="o">=</span> <span class="mf">30.0142</span>
+
+<span class="n">year</span> <span class="o">=</span> <span class="n">desired_date</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Load and plot the sea surface temperature data</span>
+<span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://psl.noaa.gov/thredds/dodsC/Datasets/noaa.oisst.v2.highres/sst.day.mean.</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">.nc&#39;</span>
+<span class="n">xrds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+<span class="n">single_point</span> <span class="o">=</span> <span class="n">xrds</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span>
+    <span class="n">time</span> <span class="o">=</span> <span class="n">desired_date</span><span class="p">,</span>
+    <span class="n">lat</span> <span class="o">=</span> <span class="n">desired_latitude</span><span class="p">,</span>
+    <span class="n">lon</span> <span class="o">=</span> <span class="n">desired_longitude</span><span class="p">,</span>
+    <span class="n">method</span> <span class="o">=</span> <span class="s1">&#39;nearest&#39;</span>
+<span class="p">)</span>
+
+<span class="n">latitude_value</span> <span class="o">=</span> <span class="n">single_point</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">longitude_value</span> <span class="o">=</span> <span class="n">single_point</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">time_value</span> <span class="o">=</span> <span class="n">single_point</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">sst_value</span> <span class="o">=</span> <span class="n">single_point</span><span class="p">[</span><span class="s1">&#39;sst&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Latitude:&#39;</span><span class="p">,</span><span class="n">latitude_value</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Longitude:&#39;</span><span class="p">,</span><span class="n">longitude_value</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Time:&#39;</span><span class="p">,</span><span class="n">time_value</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Sea surface temperature value:&#39;</span><span class="p">,</span><span class="n">sst_value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Latitude: 73.625
+Longitude: 30.125
+Time: 2024-02-01T00:00:00.000000000
+Sea surface temperature value: 3.87
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="interactive-plot">
+<h3>Interactive plot<a class="headerlink" href="#interactive-plot" title="Permalink to this heading">#</a></h3>
+<p>We can create an interactive plot that we zoom in on, rotate, and observe exact values for the <code class="docutils literal notranslate"><span class="pre">sst</span></code> at any coordinate. We will use <code class="docutils literal notranslate"><span class="pre">plotly</span></code> to do this.</p>
+<p>Interactive plots can require a lot of memory, so let’s downsample the data first to make it easier to work with for this example.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+
+<span class="c1"># Define parameters</span>
+<span class="n">desired_date</span> <span class="o">=</span> <span class="s1">&#39;2024-02-01&#39;</span>
+<span class="n">year</span> <span class="o">=</span> <span class="n">desired_date</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Load the dataset from the remote server and select the desired date</span>
+<span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://psl.noaa.gov/thredds/dodsC/Datasets/noaa.oisst.v2.highres/sst.day.mean.</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">.nc&#39;</span>
+<span class="n">xrds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">xrds</span> <span class="o">=</span> <span class="n">xrds</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">desired_date</span><span class="p">)</span>
+
+<span class="c1"># Downsample the dataset by selecting every 4th point along lat and lon</span>
+<span class="n">xrds_ds</span> <span class="o">=</span> <span class="n">xrds</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">lat</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">lon</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="c1"># Apply a filter to the sea surface temperature data</span>
+<span class="n">sst</span> <span class="o">=</span> <span class="n">xrds_ds</span><span class="p">[</span><span class="s1">&#39;sst&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">xrds_ds</span><span class="p">[</span><span class="s1">&#39;sst&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s extract our latitude, longitude and sea surface temperature values.</p>
+<p>We first need to create 2D grids for our 1D latitude and longitude arrays, to match the sea surface temperature values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">sst_array</span> <span class="o">=</span> <span class="n">sst</span><span class="o">.</span><span class="n">values</span>  <span class="c1"># shape: (n_lat, n_lon)</span>
+<span class="n">lon_values</span> <span class="o">=</span> <span class="n">sst</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>  <span class="c1"># 1D array of longitudes</span>
+<span class="n">lat_values</span> <span class="o">=</span> <span class="n">sst</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>  <span class="c1"># 1D array of latitudes</span>
+
+<span class="n">lon_grid</span><span class="p">,</span> <span class="n">lat_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">lon_values</span><span class="p">,</span> <span class="n">lat_values</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, we will flatten all the 2D arrays so we have 1D arrays of equal length.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lon_flat</span> <span class="o">=</span> <span class="n">lon_grid</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="n">lat_flat</span> <span class="o">=</span> <span class="n">lat_grid</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="n">sst_flat</span> <span class="o">=</span> <span class="n">sst_array</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, let’s plot the data. We will create a <code class="docutils literal notranslate"><span class="pre">ScatterGeo</span></code> plot that allows us to use a projection. We can select projections from:</p>
+<p><a class="reference external" href="https://plotly.com/python/map-configuration/">https://plotly.com/python/map-configuration/</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
+
+<span class="c1"># Create a scattergeo plot</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">go</span><span class="o">.</span><span class="n">Scattergeo</span><span class="p">(</span>
+    <span class="n">lon</span> <span class="o">=</span> <span class="n">lon_flat</span><span class="p">,</span>
+    <span class="n">lat</span> <span class="o">=</span> <span class="n">lat_flat</span><span class="p">,</span>
+    <span class="n">mode</span> <span class="o">=</span> <span class="s1">&#39;markers&#39;</span><span class="p">,</span>
+    <span class="n">marker</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="n">sst_flat</span><span class="p">,</span>
+        <span class="n">colorscale</span> <span class="o">=</span> <span class="s1">&#39;Jet&#39;</span><span class="p">,</span>
+        <span class="n">cmin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmin</span><span class="p">(</span><span class="n">sst_flat</span><span class="p">),</span>
+        <span class="n">cmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span><span class="n">sst_flat</span><span class="p">),</span>
+        <span class="n">colorbar</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Temperature (°C)&quot;</span><span class="p">),</span>
+        <span class="n">size</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span>  <span class="c1"># Adjust size for best visual appearance</span>
+        <span class="n">opacity</span> <span class="o">=</span> <span class="mf">0.7</span>
+    <span class="p">),</span>
+    <span class="n">hovertemplate</span> <span class="o">=</span> <span class="s1">&#39;Lat: %</span><span class="si">{lat}</span><span class="s1">&lt;br&gt;Lon: %</span><span class="si">{lon}</span><span class="s1">&lt;br&gt;SST: %</span><span class="si">{marker.color:.2f}</span><span class="s1">°C&lt;extra&gt;&lt;/extra&gt;&#39;</span>  <span class="c1"># Display lat, lon, SST on hover</span>
+<span class="p">))</span>
+
+<span class="c1"># Update layout with an orthographic projection and some geographical features</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Sea Surface Temperature (°C)&quot;</span><span class="p">,</span>
+    <span class="n">geo</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">projection</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;orthographic&quot;</span><span class="p">),</span>
+        <span class="n">showcoastlines</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">coastlinecolor</span> <span class="o">=</span> <span class="s2">&quot;black&quot;</span><span class="p">,</span>
+        <span class="n">showland</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">landcolor</span> <span class="o">=</span> <span class="s2">&quot;rgb(229, 229, 229)&quot;</span><span class="p">,</span>
+        <span class="n">showcountries</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">countrycolor</span> <span class="o">=</span> <span class="s2">&quot;black&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># For display in a Jupyter Book (uncomment fig.show() if using a notebook)</span>
+<span class="c1"># fig.show()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">write_html</span><span class="p">(</span><span class="s2">&quot;interactive_plot_sst.html&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">IFrame</span>
+
+<span class="c1"># Embed the saved interactive_plot.html file in the next cell</span>
+<span class="n">IFrame</span><span class="p">(</span><span class="s1">&#39;interactive_plot_sst.html&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">900</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+        <iframe
+            width="900"
+            height="600"
+            src="interactive_plot_sst.html"
+            frameborder="0"
+            allowfullscreen
+            
+        ></iframe>
+        </div></div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="global_sea_surface_temperatures.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Global Sea Surface Temperatures, Sea Ice Concentration and Wind Speed</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-characteristics">Data characteristics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#useful-links">Useful Links</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#crediting-the-data-providers">Crediting the Data Providers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exploring-the-data-in-python">Exploring the data in Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-modules">Importing modules</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#opening-and-understanding-the-data">Opening and understanding the data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-the-data-to-a-csv-file">Writing the data to a CSV file</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-the-data-for-a-day-of-our-choosing">Plotting the data for a day of our choosing</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#full-working-example">Full working example</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-a-mask-for-sea-ice">Adding a mask for sea ice</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zooming-in-on-area-of-interest">Zooming in on area of interest</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-the-sea-surface-temperature-at-a-given-location-and-date">Finding the sea surface temperature at a given location and date</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interactive-plot">Interactive plot</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Luke Marsden
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
