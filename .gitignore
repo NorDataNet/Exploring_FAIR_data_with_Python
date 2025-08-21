@@ -3,6 +3,8 @@ book/*.nc
 book/*.csv
 book/*.png
 book/notes*
+book/*.mp4
+*.mp4
 
 # Jupyter Book build files
 _build/
