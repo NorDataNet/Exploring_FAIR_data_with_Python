@@ -458,6 +458,12 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/lukem/anaconda3/lib/python3.11/site-packages/pandas/core/arrays/masked.py:61: UserWarning: Pandas requires version &#39;1.3.6&#39; or newer of &#39;bottleneck&#39; (version &#39;1.3.5&#39; currently installed).
+  from pandas.core import (
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="opening-and-understanding-the-data">
@@ -508,14 +514,13 @@ document.write(`
   --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
 }
 
-html[theme="dark"],
-html[data-theme="dark"],
-body[data-theme="dark"],
+html[theme=dark],
+body[data-theme=dark],
 body.vscode-dark {
   --xr-font-color0: rgba(255, 255, 255, 1);
   --xr-font-color2: rgba(255, 255, 255, 0.54);
   --xr-font-color3: rgba(255, 255, 255, 0.38);
-  --xr-border-color: #1f1f1f;
+  --xr-border-color: #1F1F1F;
   --xr-disabled-color: #515151;
   --xr-background-color: #111111;
   --xr-background-color-row-even: #111111;
@@ -560,7 +565,7 @@ body.vscode-dark {
 .xr-sections {
   padding-left: 0 !important;
   display: grid;
-  grid-template-columns: 150px auto auto 1fr 0 20px 0 20px;
+  grid-template-columns: 150px auto auto 1fr 20px 20px;
 }
 
 .xr-section-item {
@@ -568,9 +573,7 @@ body.vscode-dark {
 }
 
 .xr-section-item input {
-  display: inline-block;
-  opacity: 0;
-  height: 0;
+  display: none;
 }
 
 .xr-section-item input + label {
@@ -580,10 +583,6 @@ body.vscode-dark {
 .xr-section-item input:enabled + label {
   cursor: pointer;
   color: var(--xr-font-color2);
-}
-
-.xr-section-item input:focus + label {
-  border: 2px solid var(--xr-font-color0);
 }
 
 .xr-section-item input:enabled + label:hover {
@@ -607,7 +606,7 @@ body.vscode-dark {
 
 .xr-section-summary-in + label:before {
   display: inline-block;
-  content: "►";
+  content: '►';
   font-size: 11px;
   width: 15px;
   text-align: center;
@@ -618,7 +617,7 @@ body.vscode-dark {
 }
 
 .xr-section-summary-in:checked + label:before {
-  content: "▼";
+  content: '▼';
 }
 
 .xr-section-summary-in:checked + label > span {
@@ -690,15 +689,15 @@ body.vscode-dark {
 }
 
 .xr-dim-list:before {
-  content: "(";
+  content: '(';
 }
 
 .xr-dim-list:after {
-  content: ")";
+  content: ')';
 }
 
 .xr-dim-list li:not(:last-child):after {
-  content: ",";
+  content: ',';
   padding-right: 5px;
 }
 
@@ -848,14 +847,14 @@ dl.xr-attrs {
   stroke: currentColor;
   fill: currentColor;
 }
-</style><pre class='xr-text-repr-fallback'>&lt;xarray.Dataset&gt; Size: 228MB
-Dimensions:  (time: 55, lat: 720, lon: 1440)
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.Dataset&gt;
+Dimensions:  (time: 231, lat: 720, lon: 1440)
 Coordinates:
-  * time     (time) datetime64[ns] 440B 2025-01-01 2025-01-02 ... 2025-02-24
-  * lat      (lat) float32 3kB -89.88 -89.62 -89.38 -89.12 ... 89.38 89.62 89.88
-  * lon      (lon) float32 6kB 0.125 0.375 0.625 0.875 ... 359.4 359.6 359.9
+  * time     (time) datetime64[ns] 2025-01-01 2025-01-02 ... 2025-08-19
+  * lat      (lat) float32 -89.88 -89.62 -89.38 -89.12 ... 89.38 89.62 89.88
+  * lon      (lon) float32 0.125 0.375 0.625 0.875 ... 359.1 359.4 359.6 359.9
 Data variables:
-    sst      (time, lat, lon) float32 228MB ...
+    sst      (time, lat, lon) float32 ...
 Attributes:
     Conventions:                     CF-1.5
     _NCProperties:                   version=2,netcdf=4.7.0,hdf5=1.10.5,
@@ -866,60 +865,29 @@ Attributes:
     dataset_title:                   NOAA Daily Optimum Interpolation Sea Sur...
     version:                         Version 2.1
     comment:                         Reynolds, et al.(2007) Daily High-Resolu...
-    DODS_EXTRA.Unlimited_Dimension:  time</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-ab27565d-5622-47b5-a211-e134021bbbc5' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-ab27565d-5622-47b5-a211-e134021bbbc5' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>time</span>: 55</li><li><span class='xr-has-index'>lat</span>: 720</li><li><span class='xr-has-index'>lon</span>: 1440</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-03b2e84c-0cf5-4e90-8033-d4ea2ec89f4e' class='xr-section-summary-in' type='checkbox'  checked><label for='section-03b2e84c-0cf5-4e90-8033-d4ea2ec89f4e' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>time</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>2025-01-01 ... 2025-02-24</div><input id='attrs-18bac8f9-bd66-431d-bc03-7b50c59814df' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-18bac8f9-bd66-431d-bc03-7b50c59814df' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-0ac44d97-d805-44fe-a778-86feea19780a' class='xr-var-data-in' type='checkbox'><label for='data-0ac44d97-d805-44fe-a778-86feea19780a' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Time</dd><dt><span>delta_t :</span></dt><dd>0000-00-01 00:00:00</dd><dt><span>avg_period :</span></dt><dd>0000-00-01 00:00:00</dd><dt><span>axis :</span></dt><dd>T</dd><dt><span>actual_range :</span></dt><dd>[82180. 82234.]</dd><dt><span>_ChunkSizes :</span></dt><dd>512</dd></dl></div><div class='xr-var-data'><pre>array([&#x27;2025-01-01T00:00:00.000000000&#x27;, &#x27;2025-01-02T00:00:00.000000000&#x27;,
-       &#x27;2025-01-03T00:00:00.000000000&#x27;, &#x27;2025-01-04T00:00:00.000000000&#x27;,
-       &#x27;2025-01-05T00:00:00.000000000&#x27;, &#x27;2025-01-06T00:00:00.000000000&#x27;,
-       &#x27;2025-01-07T00:00:00.000000000&#x27;, &#x27;2025-01-08T00:00:00.000000000&#x27;,
-       &#x27;2025-01-09T00:00:00.000000000&#x27;, &#x27;2025-01-10T00:00:00.000000000&#x27;,
-       &#x27;2025-01-11T00:00:00.000000000&#x27;, &#x27;2025-01-12T00:00:00.000000000&#x27;,
-       &#x27;2025-01-13T00:00:00.000000000&#x27;, &#x27;2025-01-14T00:00:00.000000000&#x27;,
-       &#x27;2025-01-15T00:00:00.000000000&#x27;, &#x27;2025-01-16T00:00:00.000000000&#x27;,
-       &#x27;2025-01-17T00:00:00.000000000&#x27;, &#x27;2025-01-18T00:00:00.000000000&#x27;,
-       &#x27;2025-01-19T00:00:00.000000000&#x27;, &#x27;2025-01-20T00:00:00.000000000&#x27;,
-       &#x27;2025-01-21T00:00:00.000000000&#x27;, &#x27;2025-01-22T00:00:00.000000000&#x27;,
-       &#x27;2025-01-23T00:00:00.000000000&#x27;, &#x27;2025-01-24T00:00:00.000000000&#x27;,
-       &#x27;2025-01-25T00:00:00.000000000&#x27;, &#x27;2025-01-26T00:00:00.000000000&#x27;,
-       &#x27;2025-01-27T00:00:00.000000000&#x27;, &#x27;2025-01-28T00:00:00.000000000&#x27;,
-       &#x27;2025-01-29T00:00:00.000000000&#x27;, &#x27;2025-01-30T00:00:00.000000000&#x27;,
-       &#x27;2025-01-31T00:00:00.000000000&#x27;, &#x27;2025-02-01T00:00:00.000000000&#x27;,
-       &#x27;2025-02-02T00:00:00.000000000&#x27;, &#x27;2025-02-03T00:00:00.000000000&#x27;,
-       &#x27;2025-02-04T00:00:00.000000000&#x27;, &#x27;2025-02-05T00:00:00.000000000&#x27;,
-       &#x27;2025-02-06T00:00:00.000000000&#x27;, &#x27;2025-02-07T00:00:00.000000000&#x27;,
-       &#x27;2025-02-08T00:00:00.000000000&#x27;, &#x27;2025-02-09T00:00:00.000000000&#x27;,
-       &#x27;2025-02-10T00:00:00.000000000&#x27;, &#x27;2025-02-11T00:00:00.000000000&#x27;,
-       &#x27;2025-02-12T00:00:00.000000000&#x27;, &#x27;2025-02-13T00:00:00.000000000&#x27;,
-       &#x27;2025-02-14T00:00:00.000000000&#x27;, &#x27;2025-02-15T00:00:00.000000000&#x27;,
-       &#x27;2025-02-16T00:00:00.000000000&#x27;, &#x27;2025-02-17T00:00:00.000000000&#x27;,
-       &#x27;2025-02-18T00:00:00.000000000&#x27;, &#x27;2025-02-19T00:00:00.000000000&#x27;,
-       &#x27;2025-02-20T00:00:00.000000000&#x27;, &#x27;2025-02-21T00:00:00.000000000&#x27;,
-       &#x27;2025-02-22T00:00:00.000000000&#x27;, &#x27;2025-02-23T00:00:00.000000000&#x27;,
-       &#x27;2025-02-24T00:00:00.000000000&#x27;], dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lat</span></div><div class='xr-var-dims'>(lat)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>-89.88 -89.62 ... 89.62 89.88</div><input id='attrs-5a304fbb-bd6f-4fbe-bcfd-38096febf54c' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-5a304fbb-bd6f-4fbe-bcfd-38096febf54c' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-251b86f0-bbf3-424d-b7e4-7fd805cd870a' class='xr-var-data-in' type='checkbox'><label for='data-251b86f0-bbf3-424d-b7e4-7fd805cd870a' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>actual_range :</span></dt><dd>[-89.875  89.875]</dd><dt><span>axis :</span></dt><dd>Y</dd></dl></div><div class='xr-var-data'><pre>array([-89.875, -89.625, -89.375, ...,  89.375,  89.625,  89.875],
-      dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lon</span></div><div class='xr-var-dims'>(lon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>0.125 0.375 0.625 ... 359.6 359.9</div><input id='attrs-fd7b2d4e-4994-4a7a-8835-06e9e8727aca' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-fd7b2d4e-4994-4a7a-8835-06e9e8727aca' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-0c235afa-1918-430b-87e9-3fc8d412c7dc' class='xr-var-data-in' type='checkbox'><label for='data-0c235afa-1918-430b-87e9-3fc8d412c7dc' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>actual_range :</span></dt><dd>[1.25000e-01 3.59875e+02]</dd><dt><span>axis :</span></dt><dd>X</dd></dl></div><div class='xr-var-data'><pre>array([1.25000e-01, 3.75000e-01, 6.25000e-01, ..., 3.59375e+02, 3.59625e+02,
-       3.59875e+02], dtype=float32)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-50d1cc1f-48eb-4612-a045-3683f61991bb' class='xr-section-summary-in' type='checkbox'  checked><label for='section-50d1cc1f-48eb-4612-a045-3683f61991bb' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>sst</span></div><div class='xr-var-dims'>(time, lat, lon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-cfee9b6a-6e63-4095-acab-67847f2e41e0' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-cfee9b6a-6e63-4095-acab-67847f2e41e0' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-af9212e7-7805-4cb5-86d9-b6806f27be45' class='xr-var-data-in' type='checkbox'><label for='data-af9212e7-7805-4cb5-86d9-b6806f27be45' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Daily Sea Surface Temperature</dd><dt><span>units :</span></dt><dd>degC</dd><dt><span>valid_range :</span></dt><dd>[-3. 45.]</dd><dt><span>precision :</span></dt><dd>2.0</dd><dt><span>dataset :</span></dt><dd>NOAA High-resolution Blended Analysis</dd><dt><span>var_desc :</span></dt><dd>Sea Surface Temperature</dd><dt><span>level_desc :</span></dt><dd>Surface</dd><dt><span>statistic :</span></dt><dd>Mean</dd><dt><span>parent_stat :</span></dt><dd>Individual Observations</dd><dt><span>actual_range :</span></dt><dd>[-1.8  35.79]</dd><dt><span>_ChunkSizes :</span></dt><dd>[   1  720 1440]</dd></dl></div><div class='xr-var-data'><pre>[57024000 values with dtype=float32]</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-07d6c3f3-577f-42b5-ad46-38cd39c99cd4' class='xr-section-summary-in' type='checkbox'  ><label for='section-07d6c3f3-577f-42b5-ad46-38cd39c99cd4' class='xr-section-summary' >Indexes: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>time</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-023c1d90-492a-465b-a783-ba7c8958f625' class='xr-index-data-in' type='checkbox'/><label for='index-023c1d90-492a-465b-a783-ba7c8958f625' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(DatetimeIndex([&#x27;2025-01-01&#x27;, &#x27;2025-01-02&#x27;, &#x27;2025-01-03&#x27;, &#x27;2025-01-04&#x27;,
+    DODS_EXTRA.Unlimited_Dimension:  time</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-ede810b5-f73f-45a7-9761-c8276d8c172b' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-ede810b5-f73f-45a7-9761-c8276d8c172b' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>time</span>: 231</li><li><span class='xr-has-index'>lat</span>: 720</li><li><span class='xr-has-index'>lon</span>: 1440</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-7112b569-9448-461c-924b-3791538aa174' class='xr-section-summary-in' type='checkbox'  checked><label for='section-7112b569-9448-461c-924b-3791538aa174' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>time</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>2025-01-01 ... 2025-08-19</div><input id='attrs-c752ecd8-0bf8-4b05-b621-42ae28b5829f' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-c752ecd8-0bf8-4b05-b621-42ae28b5829f' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-b649467c-ef59-4eba-9406-85d9bf9cf33a' class='xr-var-data-in' type='checkbox'><label for='data-b649467c-ef59-4eba-9406-85d9bf9cf33a' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Time</dd><dt><span>delta_t :</span></dt><dd>0000-00-01 00:00:00</dd><dt><span>avg_period :</span></dt><dd>0000-00-01 00:00:00</dd><dt><span>axis :</span></dt><dd>T</dd><dt><span>actual_range :</span></dt><dd>[82180. 82410.]</dd><dt><span>_ChunkSizes :</span></dt><dd>512</dd></dl></div><div class='xr-var-data'><pre>array([&#x27;2025-01-01T00:00:00.000000000&#x27;, &#x27;2025-01-02T00:00:00.000000000&#x27;,
+       &#x27;2025-01-03T00:00:00.000000000&#x27;, ..., &#x27;2025-08-17T00:00:00.000000000&#x27;,
+       &#x27;2025-08-18T00:00:00.000000000&#x27;, &#x27;2025-08-19T00:00:00.000000000&#x27;],
+      dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lat</span></div><div class='xr-var-dims'>(lat)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>-89.88 -89.62 ... 89.62 89.88</div><input id='attrs-3199e3ea-507b-4de1-a0bd-a9434245b6a0' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-3199e3ea-507b-4de1-a0bd-a9434245b6a0' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-40a6e8f7-e970-4024-b002-f3214ce3e245' class='xr-var-data-in' type='checkbox'><label for='data-40a6e8f7-e970-4024-b002-f3214ce3e245' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>actual_range :</span></dt><dd>[-89.875  89.875]</dd><dt><span>axis :</span></dt><dd>Y</dd></dl></div><div class='xr-var-data'><pre>array([-89.875, -89.625, -89.375, ...,  89.375,  89.625,  89.875],
+      dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lon</span></div><div class='xr-var-dims'>(lon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>0.125 0.375 0.625 ... 359.6 359.9</div><input id='attrs-b4e2c42a-a12b-494f-a8e8-7379f341a440' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-b4e2c42a-a12b-494f-a8e8-7379f341a440' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-d0014181-fdfe-42b0-abb6-f41d17039e1c' class='xr-var-data-in' type='checkbox'><label for='data-d0014181-fdfe-42b0-abb6-f41d17039e1c' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>actual_range :</span></dt><dd>[1.25000e-01 3.59875e+02]</dd><dt><span>axis :</span></dt><dd>X</dd></dl></div><div class='xr-var-data'><pre>array([1.25000e-01, 3.75000e-01, 6.25000e-01, ..., 3.59375e+02, 3.59625e+02,
+       3.59875e+02], dtype=float32)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-af4fd408-3189-4253-9307-4a409b7f19ba' class='xr-section-summary-in' type='checkbox'  checked><label for='section-af4fd408-3189-4253-9307-4a409b7f19ba' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>sst</span></div><div class='xr-var-dims'>(time, lat, lon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-9af78eb1-dbf6-4fd8-a53d-a7586379580f' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-9af78eb1-dbf6-4fd8-a53d-a7586379580f' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-13975bfd-3b36-419d-9a14-c89716a6ed60' class='xr-var-data-in' type='checkbox'><label for='data-13975bfd-3b36-419d-9a14-c89716a6ed60' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Daily Sea Surface Temperature</dd><dt><span>units :</span></dt><dd>degC</dd><dt><span>valid_range :</span></dt><dd>[-3. 45.]</dd><dt><span>precision :</span></dt><dd>2.0</dd><dt><span>dataset :</span></dt><dd>NOAA High-resolution Blended Analysis</dd><dt><span>var_desc :</span></dt><dd>Sea Surface Temperature</dd><dt><span>level_desc :</span></dt><dd>Surface</dd><dt><span>statistic :</span></dt><dd>Mean</dd><dt><span>parent_stat :</span></dt><dd>Individual Observations</dd><dt><span>actual_range :</span></dt><dd>[-1.8  36.68]</dd><dt><span>_ChunkSizes :</span></dt><dd>[   1  720 1440]</dd></dl></div><div class='xr-var-data'><pre>[239500800 values with dtype=float32]</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-67f91caa-6cda-4a2e-b3c6-b3972c8975a5' class='xr-section-summary-in' type='checkbox'  ><label for='section-67f91caa-6cda-4a2e-b3c6-b3972c8975a5' class='xr-section-summary' >Indexes: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>time</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-84e37ea2-1643-4d2e-a725-a311aad1eefc' class='xr-index-data-in' type='checkbox'/><label for='index-84e37ea2-1643-4d2e-a725-a311aad1eefc' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(DatetimeIndex([&#x27;2025-01-01&#x27;, &#x27;2025-01-02&#x27;, &#x27;2025-01-03&#x27;, &#x27;2025-01-04&#x27;,
                &#x27;2025-01-05&#x27;, &#x27;2025-01-06&#x27;, &#x27;2025-01-07&#x27;, &#x27;2025-01-08&#x27;,
-               &#x27;2025-01-09&#x27;, &#x27;2025-01-10&#x27;, &#x27;2025-01-11&#x27;, &#x27;2025-01-12&#x27;,
-               &#x27;2025-01-13&#x27;, &#x27;2025-01-14&#x27;, &#x27;2025-01-15&#x27;, &#x27;2025-01-16&#x27;,
-               &#x27;2025-01-17&#x27;, &#x27;2025-01-18&#x27;, &#x27;2025-01-19&#x27;, &#x27;2025-01-20&#x27;,
-               &#x27;2025-01-21&#x27;, &#x27;2025-01-22&#x27;, &#x27;2025-01-23&#x27;, &#x27;2025-01-24&#x27;,
-               &#x27;2025-01-25&#x27;, &#x27;2025-01-26&#x27;, &#x27;2025-01-27&#x27;, &#x27;2025-01-28&#x27;,
-               &#x27;2025-01-29&#x27;, &#x27;2025-01-30&#x27;, &#x27;2025-01-31&#x27;, &#x27;2025-02-01&#x27;,
-               &#x27;2025-02-02&#x27;, &#x27;2025-02-03&#x27;, &#x27;2025-02-04&#x27;, &#x27;2025-02-05&#x27;,
-               &#x27;2025-02-06&#x27;, &#x27;2025-02-07&#x27;, &#x27;2025-02-08&#x27;, &#x27;2025-02-09&#x27;,
-               &#x27;2025-02-10&#x27;, &#x27;2025-02-11&#x27;, &#x27;2025-02-12&#x27;, &#x27;2025-02-13&#x27;,
-               &#x27;2025-02-14&#x27;, &#x27;2025-02-15&#x27;, &#x27;2025-02-16&#x27;, &#x27;2025-02-17&#x27;,
-               &#x27;2025-02-18&#x27;, &#x27;2025-02-19&#x27;, &#x27;2025-02-20&#x27;, &#x27;2025-02-21&#x27;,
-               &#x27;2025-02-22&#x27;, &#x27;2025-02-23&#x27;, &#x27;2025-02-24&#x27;],
-              dtype=&#x27;datetime64[ns]&#x27;, name=&#x27;time&#x27;, freq=None))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>lat</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-0d2a653e-de0c-47fc-972f-67a8315e30a3' class='xr-index-data-in' type='checkbox'/><label for='index-0d2a653e-de0c-47fc-972f-67a8315e30a3' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([-89.875, -89.625, -89.375, -89.125, -88.875, -88.625, -88.375, -88.125,
+               &#x27;2025-01-09&#x27;, &#x27;2025-01-10&#x27;,
+               ...
+               &#x27;2025-08-10&#x27;, &#x27;2025-08-11&#x27;, &#x27;2025-08-12&#x27;, &#x27;2025-08-13&#x27;,
+               &#x27;2025-08-14&#x27;, &#x27;2025-08-15&#x27;, &#x27;2025-08-16&#x27;, &#x27;2025-08-17&#x27;,
+               &#x27;2025-08-18&#x27;, &#x27;2025-08-19&#x27;],
+              dtype=&#x27;datetime64[ns]&#x27;, name=&#x27;time&#x27;, length=231, freq=None))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>lat</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-1078b650-6146-4973-9af4-3885c036feca' class='xr-index-data-in' type='checkbox'/><label for='index-1078b650-6146-4973-9af4-3885c036feca' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([-89.875, -89.625, -89.375, -89.125, -88.875, -88.625, -88.375, -88.125,
        -87.875, -87.625,
        ...
         87.625,  87.875,  88.125,  88.375,  88.625,  88.875,  89.125,  89.375,
         89.625,  89.875],
-      dtype=&#x27;float32&#x27;, name=&#x27;lat&#x27;, length=720))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>lon</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-21689de6-62ea-4653-9e2c-ca949ef65e1b' class='xr-index-data-in' type='checkbox'/><label for='index-21689de6-62ea-4653-9e2c-ca949ef65e1b' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([  0.125,   0.375,   0.625,   0.875,   1.125,   1.375,   1.625,   1.875,
+      dtype=&#x27;float32&#x27;, name=&#x27;lat&#x27;, length=720))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>lon</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-89158e60-63ac-4995-8125-0afd2c4f9c62' class='xr-index-data-in' type='checkbox'/><label for='index-89158e60-63ac-4995-8125-0afd2c4f9c62' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([  0.125,   0.375,   0.625,   0.875,   1.125,   1.375,   1.625,   1.875,
          2.125,   2.375,
        ...
        357.625, 357.875, 358.125, 358.375, 358.625, 358.875, 359.125, 359.375,
        359.625, 359.875],
-      dtype=&#x27;float32&#x27;, name=&#x27;lon&#x27;, length=1440))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-0604f2f0-1584-4fd5-a4c4-675653aa2960' class='xr-section-summary-in' type='checkbox'  ><label for='section-0604f2f0-1584-4fd5-a4c4-675653aa2960' class='xr-section-summary' >Attributes: <span>(10)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>Conventions :</span></dt><dd>CF-1.5</dd><dt><span>_NCProperties :</span></dt><dd>version=2,netcdf=4.7.0,hdf5=1.10.5,</dd><dt><span>title :</span></dt><dd>NOAA/NCEI 1/4 Degree Daily Optimum Interpolation Sea Surface Temperature (OISST) Analysis, Version 2.1</dd><dt><span>institution :</span></dt><dd>NOAA/National Centers for Environmental Information</dd><dt><span>source :</span></dt><dd>NOAA/NCEI https://www.ncei.noaa.gov/data/sea-surface-temperature-optimum-interpolation/v2.1/access/avhrr/</dd><dt><span>References :</span></dt><dd>https://www.psl.noaa.gov/data/gridded/data.noaa.oisst.v2.highres.html</dd><dt><span>dataset_title :</span></dt><dd>NOAA Daily Optimum Interpolation Sea Surface Temperature</dd><dt><span>version :</span></dt><dd>Version 2.1</dd><dt><span>comment :</span></dt><dd>Reynolds, et al.(2007) Daily High-Resolution-Blended Analyses for Sea Surface Temperature (available at https://doi.org/10.1175/2007JCLI1824.1). Banzon, et al.(2016) A long-term record of blended satellite and in situ sea-surface temperature for climate monitoring, modeling and environmental studies (available at https://doi.org/10.5194/essd-8-165-2016). Huang, B., C. Liu, V. Banzon, E. Freeman, G. Graham, B. Hankins, T. Smith, and H.-M. Zhang, 2021: Improvements of the Daily Optimum Interpolation Sea Surface Temperature (DOISST) Version 2.1 (available at https://doi.org/10.1175/JCLI-D-20-0166.1). Anomaly is based on 1971-2000 OI.v2 SST. Satellite data: multi-satellite sensor (AVHRR+VIIRS) data. Ice data: NCEP Ice and GSFC Ice. Data less than 15 days old may be subject to revision.</dd><dt><span>DODS_EXTRA.Unlimited_Dimension :</span></dt><dd>time</dd></dl></div></li></ul></div></div></div></div>
+      dtype=&#x27;float32&#x27;, name=&#x27;lon&#x27;, length=1440))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-ae5da856-e794-4c6e-a93f-076d860347a5' class='xr-section-summary-in' type='checkbox'  ><label for='section-ae5da856-e794-4c6e-a93f-076d860347a5' class='xr-section-summary' >Attributes: <span>(10)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>Conventions :</span></dt><dd>CF-1.5</dd><dt><span>_NCProperties :</span></dt><dd>version=2,netcdf=4.7.0,hdf5=1.10.5,</dd><dt><span>title :</span></dt><dd>NOAA/NCEI 1/4 Degree Daily Optimum Interpolation Sea Surface Temperature (OISST) Analysis, Version 2.1</dd><dt><span>institution :</span></dt><dd>NOAA/National Centers for Environmental Information</dd><dt><span>source :</span></dt><dd>NOAA/NCEI https://www.ncei.noaa.gov/data/sea-surface-temperature-optimum-interpolation/v2.1/access/avhrr/</dd><dt><span>References :</span></dt><dd>https://www.psl.noaa.gov/data/gridded/data.noaa.oisst.v2.highres.html</dd><dt><span>dataset_title :</span></dt><dd>NOAA Daily Optimum Interpolation Sea Surface Temperature</dd><dt><span>version :</span></dt><dd>Version 2.1</dd><dt><span>comment :</span></dt><dd>Reynolds, et al.(2007) Daily High-Resolution-Blended Analyses for Sea Surface Temperature (available at https://doi.org/10.1175/2007JCLI1824.1). Banzon, et al.(2016) A long-term record of blended satellite and in situ sea-surface temperature for climate monitoring, modeling and environmental studies (available at https://doi.org/10.5194/essd-8-165-2016). Huang, B., C. Liu, V. Banzon, E. Freeman, G. Graham, B. Hankins, T. Smith, and H.-M. Zhang, 2021: Improvements of the Daily Optimum Interpolation Sea Surface Temperature (DOISST) Version 2.1 (available at https://doi.org/10.1175/JCLI-D-20-0166.1). Anomaly is based on 1971-2000 OI.v2 SST. Satellite data: multi-satellite sensor (AVHRR+VIIRS) data. Ice data: NCEP Ice and GSFC Ice. Data less than 15 days old may be subject to revision.</dd><dt><span>DODS_EXTRA.Unlimited_Dimension :</span></dt><dd>time</dd></dl></div></li></ul></div></div></div></div>
 </div>
 <p>The OPeNDAP data access URL is predictable, a function of the date. Let’s write something to access the data from any date of our choosing.</p>
 <div class="cell docutils container">
@@ -966,14 +934,13 @@ Attributes:
   --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
 }
 
-html[theme="dark"],
-html[data-theme="dark"],
-body[data-theme="dark"],
+html[theme=dark],
+body[data-theme=dark],
 body.vscode-dark {
   --xr-font-color0: rgba(255, 255, 255, 1);
   --xr-font-color2: rgba(255, 255, 255, 0.54);
   --xr-font-color3: rgba(255, 255, 255, 0.38);
-  --xr-border-color: #1f1f1f;
+  --xr-border-color: #1F1F1F;
   --xr-disabled-color: #515151;
   --xr-background-color: #111111;
   --xr-background-color-row-even: #111111;
@@ -1018,7 +985,7 @@ body.vscode-dark {
 .xr-sections {
   padding-left: 0 !important;
   display: grid;
-  grid-template-columns: 150px auto auto 1fr 0 20px 0 20px;
+  grid-template-columns: 150px auto auto 1fr 20px 20px;
 }
 
 .xr-section-item {
@@ -1026,9 +993,7 @@ body.vscode-dark {
 }
 
 .xr-section-item input {
-  display: inline-block;
-  opacity: 0;
-  height: 0;
+  display: none;
 }
 
 .xr-section-item input + label {
@@ -1038,10 +1003,6 @@ body.vscode-dark {
 .xr-section-item input:enabled + label {
   cursor: pointer;
   color: var(--xr-font-color2);
-}
-
-.xr-section-item input:focus + label {
-  border: 2px solid var(--xr-font-color0);
 }
 
 .xr-section-item input:enabled + label:hover {
@@ -1065,7 +1026,7 @@ body.vscode-dark {
 
 .xr-section-summary-in + label:before {
   display: inline-block;
-  content: "►";
+  content: '►';
   font-size: 11px;
   width: 15px;
   text-align: center;
@@ -1076,7 +1037,7 @@ body.vscode-dark {
 }
 
 .xr-section-summary-in:checked + label:before {
-  content: "▼";
+  content: '▼';
 }
 
 .xr-section-summary-in:checked + label > span {
@@ -1148,15 +1109,15 @@ body.vscode-dark {
 }
 
 .xr-dim-list:before {
-  content: "(";
+  content: '(';
 }
 
 .xr-dim-list:after {
-  content: ")";
+  content: ')';
 }
 
 .xr-dim-list li:not(:last-child):after {
-  content: ",";
+  content: ',';
   padding-right: 5px;
 }
 
@@ -1306,14 +1267,14 @@ dl.xr-attrs {
   stroke: currentColor;
   fill: currentColor;
 }
-</style><pre class='xr-text-repr-fallback'>&lt;xarray.Dataset&gt; Size: 4MB
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.Dataset&gt;
 Dimensions:  (lat: 720, lon: 1440)
 Coordinates:
-    time     datetime64[ns] 8B 2024-02-01
-  * lat      (lat) float32 3kB -89.88 -89.62 -89.38 -89.12 ... 89.38 89.62 89.88
-  * lon      (lon) float32 6kB 0.125 0.375 0.625 0.875 ... 359.4 359.6 359.9
+    time     datetime64[ns] 2024-02-01
+  * lat      (lat) float32 -89.88 -89.62 -89.38 -89.12 ... 89.38 89.62 89.88
+  * lon      (lon) float32 0.125 0.375 0.625 0.875 ... 359.1 359.4 359.6 359.9
 Data variables:
-    sst      (lat, lon) float32 4MB ...
+    sst      (lat, lon) float32 ...
 Attributes:
     Conventions:                     CF-1.5
     _NCProperties:                   version=2,netcdf=4.7.0,hdf5=1.10.5,
@@ -1324,19 +1285,19 @@ Attributes:
     dataset_title:                   NOAA Daily Optimum Interpolation Sea Sur...
     version:                         Version 2.1
     comment:                         Reynolds, et al.(2007) Daily High-Resolu...
-    DODS_EXTRA.Unlimited_Dimension:  time</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-4105d07b-9d6e-4685-ac96-4d8ddc03335e' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-4105d07b-9d6e-4685-ac96-4d8ddc03335e' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>lat</span>: 720</li><li><span class='xr-has-index'>lon</span>: 1440</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-3fa36e49-663f-4e66-96b3-1bdbb2e59325' class='xr-section-summary-in' type='checkbox'  checked><label for='section-3fa36e49-663f-4e66-96b3-1bdbb2e59325' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>time</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>2024-02-01</div><input id='attrs-fbe0f757-1407-4134-add9-4dac4584bce8' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-fbe0f757-1407-4134-add9-4dac4584bce8' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-7b751bb8-7a45-4221-af77-55ffe89a369a' class='xr-var-data-in' type='checkbox'><label for='data-7b751bb8-7a45-4221-af77-55ffe89a369a' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Time</dd><dt><span>delta_t :</span></dt><dd>0000-00-01 00:00:00</dd><dt><span>avg_period :</span></dt><dd>0000-00-01 00:00:00</dd><dt><span>axis :</span></dt><dd>T</dd><dt><span>actual_range :</span></dt><dd>[81814. 82179.]</dd><dt><span>_ChunkSizes :</span></dt><dd>512</dd></dl></div><div class='xr-var-data'><pre>array(&#x27;2024-02-01T00:00:00.000000000&#x27;, dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lat</span></div><div class='xr-var-dims'>(lat)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>-89.88 -89.62 ... 89.62 89.88</div><input id='attrs-2efbbec9-e555-4776-b4e1-a2b8550a3a98' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-2efbbec9-e555-4776-b4e1-a2b8550a3a98' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-8ba726f5-660b-4f85-91e9-cbf5d4c70328' class='xr-var-data-in' type='checkbox'><label for='data-8ba726f5-660b-4f85-91e9-cbf5d4c70328' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>actual_range :</span></dt><dd>[-89.875  89.875]</dd><dt><span>axis :</span></dt><dd>Y</dd></dl></div><div class='xr-var-data'><pre>array([-89.875, -89.625, -89.375, ...,  89.375,  89.625,  89.875],
-      dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lon</span></div><div class='xr-var-dims'>(lon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>0.125 0.375 0.625 ... 359.6 359.9</div><input id='attrs-cc174430-172e-4593-ad5d-29c219e60195' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-cc174430-172e-4593-ad5d-29c219e60195' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-e8042bf3-8767-4310-9f01-96455aab5c49' class='xr-var-data-in' type='checkbox'><label for='data-e8042bf3-8767-4310-9f01-96455aab5c49' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>actual_range :</span></dt><dd>[1.25000e-01 3.59875e+02]</dd><dt><span>axis :</span></dt><dd>X</dd></dl></div><div class='xr-var-data'><pre>array([1.25000e-01, 3.75000e-01, 6.25000e-01, ..., 3.59375e+02, 3.59625e+02,
-       3.59875e+02], dtype=float32)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-a2eca73f-82af-4c0e-8b75-d44ae7ce8f9b' class='xr-section-summary-in' type='checkbox'  checked><label for='section-a2eca73f-82af-4c0e-8b75-d44ae7ce8f9b' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>sst</span></div><div class='xr-var-dims'>(lat, lon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-a717172a-e93a-4e84-a4c9-f16af6a2315b' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-a717172a-e93a-4e84-a4c9-f16af6a2315b' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-b58065c3-03e6-45c0-ae5b-42cdc27290d2' class='xr-var-data-in' type='checkbox'><label for='data-b58065c3-03e6-45c0-ae5b-42cdc27290d2' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Daily Sea Surface Temperature</dd><dt><span>units :</span></dt><dd>degC</dd><dt><span>valid_range :</span></dt><dd>[-3. 45.]</dd><dt><span>precision :</span></dt><dd>2.0</dd><dt><span>dataset :</span></dt><dd>NOAA High-resolution Blended Analysis</dd><dt><span>var_desc :</span></dt><dd>Sea Surface Temperature</dd><dt><span>level_desc :</span></dt><dd>Surface</dd><dt><span>statistic :</span></dt><dd>Mean</dd><dt><span>parent_stat :</span></dt><dd>Individual Observations</dd><dt><span>actual_range :</span></dt><dd>[-1.8  36.13]</dd><dt><span>_ChunkSizes :</span></dt><dd>[   1  720 1440]</dd></dl></div><div class='xr-var-data'><pre>[1036800 values with dtype=float32]</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-7bd2b165-65cf-4663-9e9b-470d336965ba' class='xr-section-summary-in' type='checkbox'  ><label for='section-7bd2b165-65cf-4663-9e9b-470d336965ba' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>lat</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-5dbaf432-0ad7-4a52-a1a7-7f590f376841' class='xr-index-data-in' type='checkbox'/><label for='index-5dbaf432-0ad7-4a52-a1a7-7f590f376841' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([-89.875, -89.625, -89.375, -89.125, -88.875, -88.625, -88.375, -88.125,
+    DODS_EXTRA.Unlimited_Dimension:  time</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-37f09722-4940-4ba1-bc82-6b7474193aea' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-37f09722-4940-4ba1-bc82-6b7474193aea' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>lat</span>: 720</li><li><span class='xr-has-index'>lon</span>: 1440</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-8f886c09-95aa-4768-b022-8cf5cb247268' class='xr-section-summary-in' type='checkbox'  checked><label for='section-8f886c09-95aa-4768-b022-8cf5cb247268' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>time</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>2024-02-01</div><input id='attrs-9a61e703-2dad-4f14-8f02-ab519e27dff6' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-9a61e703-2dad-4f14-8f02-ab519e27dff6' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-55c0ec68-3a9d-4695-ae91-19b9cfc0c3e8' class='xr-var-data-in' type='checkbox'><label for='data-55c0ec68-3a9d-4695-ae91-19b9cfc0c3e8' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Time</dd><dt><span>delta_t :</span></dt><dd>0000-00-01 00:00:00</dd><dt><span>avg_period :</span></dt><dd>0000-00-01 00:00:00</dd><dt><span>axis :</span></dt><dd>T</dd><dt><span>actual_range :</span></dt><dd>[81814. 82179.]</dd><dt><span>_ChunkSizes :</span></dt><dd>512</dd></dl></div><div class='xr-var-data'><pre>array(&#x27;2024-02-01T00:00:00.000000000&#x27;, dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lat</span></div><div class='xr-var-dims'>(lat)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>-89.88 -89.62 ... 89.62 89.88</div><input id='attrs-f53a14d4-c024-4a69-9583-cdefdb56bf52' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-f53a14d4-c024-4a69-9583-cdefdb56bf52' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-96ef6352-59bf-4462-82d9-4f60429840cd' class='xr-var-data-in' type='checkbox'><label for='data-96ef6352-59bf-4462-82d9-4f60429840cd' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>actual_range :</span></dt><dd>[-89.875  89.875]</dd><dt><span>axis :</span></dt><dd>Y</dd></dl></div><div class='xr-var-data'><pre>array([-89.875, -89.625, -89.375, ...,  89.375,  89.625,  89.875],
+      dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lon</span></div><div class='xr-var-dims'>(lon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>0.125 0.375 0.625 ... 359.6 359.9</div><input id='attrs-c49bbfc2-eb70-485a-9743-5b465873af01' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-c49bbfc2-eb70-485a-9743-5b465873af01' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-0e781e0f-9dbf-4dde-9eb8-1e92a0ccfcb5' class='xr-var-data-in' type='checkbox'><label for='data-0e781e0f-9dbf-4dde-9eb8-1e92a0ccfcb5' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>actual_range :</span></dt><dd>[1.25000e-01 3.59875e+02]</dd><dt><span>axis :</span></dt><dd>X</dd></dl></div><div class='xr-var-data'><pre>array([1.25000e-01, 3.75000e-01, 6.25000e-01, ..., 3.59375e+02, 3.59625e+02,
+       3.59875e+02], dtype=float32)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-44e689fd-71ed-474a-b549-c116e026b17e' class='xr-section-summary-in' type='checkbox'  checked><label for='section-44e689fd-71ed-474a-b549-c116e026b17e' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>sst</span></div><div class='xr-var-dims'>(lat, lon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-0cb63a32-90c9-483b-b6e0-32f9effe930e' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-0cb63a32-90c9-483b-b6e0-32f9effe930e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-90048867-0dbd-4704-a9ba-c3eb494210f1' class='xr-var-data-in' type='checkbox'><label for='data-90048867-0dbd-4704-a9ba-c3eb494210f1' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Daily Sea Surface Temperature</dd><dt><span>units :</span></dt><dd>degC</dd><dt><span>valid_range :</span></dt><dd>[-3. 45.]</dd><dt><span>precision :</span></dt><dd>2.0</dd><dt><span>dataset :</span></dt><dd>NOAA High-resolution Blended Analysis</dd><dt><span>var_desc :</span></dt><dd>Sea Surface Temperature</dd><dt><span>level_desc :</span></dt><dd>Surface</dd><dt><span>statistic :</span></dt><dd>Mean</dd><dt><span>parent_stat :</span></dt><dd>Individual Observations</dd><dt><span>actual_range :</span></dt><dd>[-1.8  36.13]</dd><dt><span>_ChunkSizes :</span></dt><dd>[   1  720 1440]</dd></dl></div><div class='xr-var-data'><pre>[1036800 values with dtype=float32]</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-109f66d6-d16c-4fbd-8290-4a68f4adf4ea' class='xr-section-summary-in' type='checkbox'  ><label for='section-109f66d6-d16c-4fbd-8290-4a68f4adf4ea' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>lat</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-42bf4e2e-2caf-4b86-9d54-dfa0c0b8ffbb' class='xr-index-data-in' type='checkbox'/><label for='index-42bf4e2e-2caf-4b86-9d54-dfa0c0b8ffbb' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([-89.875, -89.625, -89.375, -89.125, -88.875, -88.625, -88.375, -88.125,
        -87.875, -87.625,
        ...
         87.625,  87.875,  88.125,  88.375,  88.625,  88.875,  89.125,  89.375,
         89.625,  89.875],
-      dtype=&#x27;float32&#x27;, name=&#x27;lat&#x27;, length=720))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>lon</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-8b46ffdf-7681-47fc-98ee-1531bcc4213a' class='xr-index-data-in' type='checkbox'/><label for='index-8b46ffdf-7681-47fc-98ee-1531bcc4213a' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([  0.125,   0.375,   0.625,   0.875,   1.125,   1.375,   1.625,   1.875,
+      dtype=&#x27;float32&#x27;, name=&#x27;lat&#x27;, length=720))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>lon</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-03aadd83-f9a5-48f4-957e-cac3f016c85c' class='xr-index-data-in' type='checkbox'/><label for='index-03aadd83-f9a5-48f4-957e-cac3f016c85c' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([  0.125,   0.375,   0.625,   0.875,   1.125,   1.375,   1.625,   1.875,
          2.125,   2.375,
        ...
        357.625, 357.875, 358.125, 358.375, 358.625, 358.875, 359.125, 359.375,
        359.625, 359.875],
-      dtype=&#x27;float32&#x27;, name=&#x27;lon&#x27;, length=1440))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-6a4bcc9d-631b-4b96-8d6c-96fcf69b3c88' class='xr-section-summary-in' type='checkbox'  ><label for='section-6a4bcc9d-631b-4b96-8d6c-96fcf69b3c88' class='xr-section-summary' >Attributes: <span>(10)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>Conventions :</span></dt><dd>CF-1.5</dd><dt><span>_NCProperties :</span></dt><dd>version=2,netcdf=4.7.0,hdf5=1.10.5,</dd><dt><span>title :</span></dt><dd>NOAA/NCEI 1/4 Degree Daily Optimum Interpolation Sea Surface Temperature (OISST) Analysis, Version 2.1</dd><dt><span>institution :</span></dt><dd>NOAA/National Centers for Environmental Information</dd><dt><span>source :</span></dt><dd>NOAA/NCEI https://www.ncei.noaa.gov/data/sea-surface-temperature-optimum-interpolation/v2.1/access/avhrr/</dd><dt><span>References :</span></dt><dd>https://www.psl.noaa.gov/data/gridded/data.noaa.oisst.v2.highres.html</dd><dt><span>dataset_title :</span></dt><dd>NOAA Daily Optimum Interpolation Sea Surface Temperature</dd><dt><span>version :</span></dt><dd>Version 2.1</dd><dt><span>comment :</span></dt><dd>Reynolds, et al.(2007) Daily High-Resolution-Blended Analyses for Sea Surface Temperature (available at https://doi.org/10.1175/2007JCLI1824.1). Banzon, et al.(2016) A long-term record of blended satellite and in situ sea-surface temperature for climate monitoring, modeling and environmental studies (available at https://doi.org/10.5194/essd-8-165-2016). Huang, B., C. Liu, V. Banzon, E. Freeman, G. Graham, B. Hankins, T. Smith, and H.-M. Zhang, 2021: Improvements of the Daily Optimum Interpolation Sea Surface Temperature (DOISST) Version 2.1 (available at https://doi.org/10.1175/JCLI-D-20-0166.1). Anomaly is based on 1971-2000 OI.v2 SST. Satellite data: multi-satellite sensor (AVHRR+VIIRS) data. Ice data: NCEP Ice and GSFC Ice. Data less than 15 days old may be subject to revision.</dd><dt><span>DODS_EXTRA.Unlimited_Dimension :</span></dt><dd>time</dd></dl></div></li></ul></div></div></div></div>
+      dtype=&#x27;float32&#x27;, name=&#x27;lon&#x27;, length=1440))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-4809e90a-7525-41a9-8a04-4287c98f2c55' class='xr-section-summary-in' type='checkbox'  ><label for='section-4809e90a-7525-41a9-8a04-4287c98f2c55' class='xr-section-summary' >Attributes: <span>(10)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>Conventions :</span></dt><dd>CF-1.5</dd><dt><span>_NCProperties :</span></dt><dd>version=2,netcdf=4.7.0,hdf5=1.10.5,</dd><dt><span>title :</span></dt><dd>NOAA/NCEI 1/4 Degree Daily Optimum Interpolation Sea Surface Temperature (OISST) Analysis, Version 2.1</dd><dt><span>institution :</span></dt><dd>NOAA/National Centers for Environmental Information</dd><dt><span>source :</span></dt><dd>NOAA/NCEI https://www.ncei.noaa.gov/data/sea-surface-temperature-optimum-interpolation/v2.1/access/avhrr/</dd><dt><span>References :</span></dt><dd>https://www.psl.noaa.gov/data/gridded/data.noaa.oisst.v2.highres.html</dd><dt><span>dataset_title :</span></dt><dd>NOAA Daily Optimum Interpolation Sea Surface Temperature</dd><dt><span>version :</span></dt><dd>Version 2.1</dd><dt><span>comment :</span></dt><dd>Reynolds, et al.(2007) Daily High-Resolution-Blended Analyses for Sea Surface Temperature (available at https://doi.org/10.1175/2007JCLI1824.1). Banzon, et al.(2016) A long-term record of blended satellite and in situ sea-surface temperature for climate monitoring, modeling and environmental studies (available at https://doi.org/10.5194/essd-8-165-2016). Huang, B., C. Liu, V. Banzon, E. Freeman, G. Graham, B. Hankins, T. Smith, and H.-M. Zhang, 2021: Improvements of the Daily Optimum Interpolation Sea Surface Temperature (DOISST) Version 2.1 (available at https://doi.org/10.1175/JCLI-D-20-0166.1). Anomaly is based on 1971-2000 OI.v2 SST. Satellite data: multi-satellite sensor (AVHRR+VIIRS) data. Ice data: NCEP Ice and GSFC Ice. Data less than 15 days old may be subject to revision.</dd><dt><span>DODS_EXTRA.Unlimited_Dimension :</span></dt><dd>time</dd></dl></div></li></ul></div></div></div></div>
 </div>
 <p>The data have 3 dimensions, <code class="docutils literal notranslate"><span class="pre">time</span></code>, <code class="docutils literal notranslate"><span class="pre">lat</span></code> and <code class="docutils literal notranslate"><span class="pre">lon</span></code>. Upon selecting the sea surface temperature (<code class="docutils literal notranslate"><span class="pre">sst</span></code>) data for a single date, we have a 2 dimensional array. Each variable has metadata associated it, and the dataset as a whole has 66 <em>global</em> attributes.</p>
 <p>Let’s have a look at the variable attributes for the <code class="docutils literal notranslate"><span class="pre">sst</span></code> variable for example.</p>
@@ -1473,7 +1434,7 @@ Attributes:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/7ead9867ca9ccce5cf20a8fd36865b848b37e92d7b330d4c0012cada08c0739c.png" src="_images/7ead9867ca9ccce5cf20a8fd36865b848b37e92d7b330d4c0012cada08c0739c.png" />
+<img alt="_images/852f4b0a51f3a887a61c5ebae786b543daa0e46bcf42a3ee863cc460aa8185c2.png" src="_images/852f4b0a51f3a887a61c5ebae786b543daa0e46bcf42a3ee863cc460aa8185c2.png" />
 </div>
 </div>
 <p>If you accidentally select a date that isn’t present in the time series, you can use <code class="docutils literal notranslate"><span class="pre">method</span> <span class="pre">=</span> <span class="pre">'nearest'</span></code> to select the data from the nearest timestamp to the date you provide. Other methods can also be used, you can read about this here:</p>
@@ -1531,7 +1492,7 @@ Attributes:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/389c0f3cd9a0f8924ce36d034cc7a64acdbc4700968484a4049507487970b995.png" src="_images/389c0f3cd9a0f8924ce36d034cc7a64acdbc4700968484a4049507487970b995.png" />
+<img alt="_images/0322cdadf11b52f3c996d07bfb02a2f532f09c5db63853a54bf08a0eb0e10a5c.png" src="_images/0322cdadf11b52f3c996d07bfb02a2f532f09c5db63853a54bf08a0eb0e10a5c.png" />
 </div>
 </div>
 </section>
@@ -1583,6 +1544,9 @@ Attributes:
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/90842dec2e396a41d71c9767d87bf7244178a4a8fbe66a187c7c7a3f9fb3617e.png" src="_images/90842dec2e396a41d71c9767d87bf7244178a4a8fbe66a187c7c7a3f9fb3617e.png" />
 </div>
 </div>
 </section>
@@ -1644,14 +1608,13 @@ Attributes:
   --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
 }
 
-html[theme="dark"],
-html[data-theme="dark"],
-body[data-theme="dark"],
+html[theme=dark],
+body[data-theme=dark],
 body.vscode-dark {
   --xr-font-color0: rgba(255, 255, 255, 1);
   --xr-font-color2: rgba(255, 255, 255, 0.54);
   --xr-font-color3: rgba(255, 255, 255, 0.38);
-  --xr-border-color: #1f1f1f;
+  --xr-border-color: #1F1F1F;
   --xr-disabled-color: #515151;
   --xr-background-color: #111111;
   --xr-background-color-row-even: #111111;
@@ -1696,7 +1659,7 @@ body.vscode-dark {
 .xr-sections {
   padding-left: 0 !important;
   display: grid;
-  grid-template-columns: 150px auto auto 1fr 0 20px 0 20px;
+  grid-template-columns: 150px auto auto 1fr 20px 20px;
 }
 
 .xr-section-item {
@@ -1704,9 +1667,7 @@ body.vscode-dark {
 }
 
 .xr-section-item input {
-  display: inline-block;
-  opacity: 0;
-  height: 0;
+  display: none;
 }
 
 .xr-section-item input + label {
@@ -1716,10 +1677,6 @@ body.vscode-dark {
 .xr-section-item input:enabled + label {
   cursor: pointer;
   color: var(--xr-font-color2);
-}
-
-.xr-section-item input:focus + label {
-  border: 2px solid var(--xr-font-color0);
 }
 
 .xr-section-item input:enabled + label:hover {
@@ -1743,7 +1700,7 @@ body.vscode-dark {
 
 .xr-section-summary-in + label:before {
   display: inline-block;
-  content: "►";
+  content: '►';
   font-size: 11px;
   width: 15px;
   text-align: center;
@@ -1754,7 +1711,7 @@ body.vscode-dark {
 }
 
 .xr-section-summary-in:checked + label:before {
-  content: "▼";
+  content: '▼';
 }
 
 .xr-section-summary-in:checked + label > span {
@@ -1826,15 +1783,15 @@ body.vscode-dark {
 }
 
 .xr-dim-list:before {
-  content: "(";
+  content: '(';
 }
 
 .xr-dim-list:after {
-  content: ")";
+  content: ')';
 }
 
 .xr-dim-list li:not(:last-child):after {
-  content: ",";
+  content: ',';
   padding-right: 5px;
 }
 
@@ -1984,14 +1941,14 @@ dl.xr-attrs {
   stroke: currentColor;
   fill: currentColor;
 }
-</style><pre class='xr-text-repr-fallback'>&lt;xarray.Dataset&gt; Size: 111kB
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.Dataset&gt;
 Dimensions:  (lat: 152, lon: 180)
 Coordinates:
-    time     datetime64[ns] 8B 2024-08-01
-  * lat      (lat) float32 608B 36.12 36.38 36.62 36.88 ... 73.38 73.62 73.88
-  * lon      (lon) float32 720B 0.125 0.375 0.625 0.875 ... 44.38 44.62 44.88
+    time     datetime64[ns] 2024-08-01
+  * lat      (lat) float32 36.12 36.38 36.62 36.88 ... 73.12 73.38 73.62 73.88
+  * lon      (lon) float32 0.125 0.375 0.625 0.875 ... 44.12 44.38 44.62 44.88
 Data variables:
-    sst      (lat, lon) float32 109kB ...
+    sst      (lat, lon) float32 ...
 Attributes:
     Conventions:                     CF-1.5
     _NCProperties:                   version=2,netcdf=4.7.0,hdf5=1.10.5,
@@ -2002,7 +1959,7 @@ Attributes:
     dataset_title:                   NOAA Daily Optimum Interpolation Sea Sur...
     version:                         Version 2.1
     comment:                         Reynolds, et al.(2007) Daily High-Resolu...
-    DODS_EXTRA.Unlimited_Dimension:  time</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-61968b6a-a19e-4bf2-a2b8-2b7be9cf7b16' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-61968b6a-a19e-4bf2-a2b8-2b7be9cf7b16' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>lat</span>: 152</li><li><span class='xr-has-index'>lon</span>: 180</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-dbf53baa-5baf-4e0b-9aea-05381a682c92' class='xr-section-summary-in' type='checkbox'  checked><label for='section-dbf53baa-5baf-4e0b-9aea-05381a682c92' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>time</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>2024-08-01</div><input id='attrs-62ff4350-79bc-4941-aa0e-cd9495abed50' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-62ff4350-79bc-4941-aa0e-cd9495abed50' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-57c0f0af-62d6-48fe-936f-0a0c15fec14d' class='xr-var-data-in' type='checkbox'><label for='data-57c0f0af-62d6-48fe-936f-0a0c15fec14d' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Time</dd><dt><span>delta_t :</span></dt><dd>0000-00-01 00:00:00</dd><dt><span>avg_period :</span></dt><dd>0000-00-01 00:00:00</dd><dt><span>axis :</span></dt><dd>T</dd><dt><span>actual_range :</span></dt><dd>[81814. 82179.]</dd><dt><span>_ChunkSizes :</span></dt><dd>512</dd></dl></div><div class='xr-var-data'><pre>array(&#x27;2024-08-01T00:00:00.000000000&#x27;, dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lat</span></div><div class='xr-var-dims'>(lat)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>36.12 36.38 36.62 ... 73.62 73.88</div><input id='attrs-4e0f64d0-c0e5-4501-af5f-d3d7e1b60b66' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-4e0f64d0-c0e5-4501-af5f-d3d7e1b60b66' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-5c4d0471-5ef9-4ea5-b309-146cfd4ed718' class='xr-var-data-in' type='checkbox'><label for='data-5c4d0471-5ef9-4ea5-b309-146cfd4ed718' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>actual_range :</span></dt><dd>[-89.875  89.875]</dd><dt><span>axis :</span></dt><dd>Y</dd></dl></div><div class='xr-var-data'><pre>array([36.125, 36.375, 36.625, 36.875, 37.125, 37.375, 37.625, 37.875, 38.125,
+    DODS_EXTRA.Unlimited_Dimension:  time</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-5e6f3809-200b-461b-855f-6d63335f3c58' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-5e6f3809-200b-461b-855f-6d63335f3c58' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>lat</span>: 152</li><li><span class='xr-has-index'>lon</span>: 180</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-530bf6fb-15b8-4c8e-b78e-ff4edb6b9beb' class='xr-section-summary-in' type='checkbox'  checked><label for='section-530bf6fb-15b8-4c8e-b78e-ff4edb6b9beb' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>time</span></div><div class='xr-var-dims'>()</div><div class='xr-var-dtype'>datetime64[ns]</div><div class='xr-var-preview xr-preview'>2024-08-01</div><input id='attrs-53390e09-607f-4a06-878c-8d0e5aa46fba' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-53390e09-607f-4a06-878c-8d0e5aa46fba' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-f7e721d5-3e48-40e5-8f4a-d376f5b74a61' class='xr-var-data-in' type='checkbox'><label for='data-f7e721d5-3e48-40e5-8f4a-d376f5b74a61' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Time</dd><dt><span>delta_t :</span></dt><dd>0000-00-01 00:00:00</dd><dt><span>avg_period :</span></dt><dd>0000-00-01 00:00:00</dd><dt><span>axis :</span></dt><dd>T</dd><dt><span>actual_range :</span></dt><dd>[81814. 82179.]</dd><dt><span>_ChunkSizes :</span></dt><dd>512</dd></dl></div><div class='xr-var-data'><pre>array(&#x27;2024-08-01T00:00:00.000000000&#x27;, dtype=&#x27;datetime64[ns]&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lat</span></div><div class='xr-var-dims'>(lat)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>36.12 36.38 36.62 ... 73.62 73.88</div><input id='attrs-a6fb0b28-645c-42db-b98d-e0009959d88a' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-a6fb0b28-645c-42db-b98d-e0009959d88a' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-6efaaa8f-7670-4513-9f30-c530f8357dc7' class='xr-var-data-in' type='checkbox'><label for='data-6efaaa8f-7670-4513-9f30-c530f8357dc7' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>actual_range :</span></dt><dd>[-89.875  89.875]</dd><dt><span>axis :</span></dt><dd>Y</dd></dl></div><div class='xr-var-data'><pre>array([36.125, 36.375, 36.625, 36.875, 37.125, 37.375, 37.625, 37.875, 38.125,
        38.375, 38.625, 38.875, 39.125, 39.375, 39.625, 39.875, 40.125, 40.375,
        40.625, 40.875, 41.125, 41.375, 41.625, 41.875, 42.125, 42.375, 42.625,
        42.875, 43.125, 43.375, 43.625, 43.875, 44.125, 44.375, 44.625, 44.875,
@@ -2019,7 +1976,7 @@ Attributes:
        67.625, 67.875, 68.125, 68.375, 68.625, 68.875, 69.125, 69.375, 69.625,
        69.875, 70.125, 70.375, 70.625, 70.875, 71.125, 71.375, 71.625, 71.875,
        72.125, 72.375, 72.625, 72.875, 73.125, 73.375, 73.625, 73.875],
-      dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lon</span></div><div class='xr-var-dims'>(lon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>0.125 0.375 0.625 ... 44.62 44.88</div><input id='attrs-77de0d95-e3d7-4246-a5c8-e21072dc705c' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-77de0d95-e3d7-4246-a5c8-e21072dc705c' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-f0b0e796-9d58-412b-88f4-205e7a5c3a5e' class='xr-var-data-in' type='checkbox'><label for='data-f0b0e796-9d58-412b-88f4-205e7a5c3a5e' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>actual_range :</span></dt><dd>[1.25000e-01 3.59875e+02]</dd><dt><span>axis :</span></dt><dd>X</dd></dl></div><div class='xr-var-data'><pre>array([ 0.125,  0.375,  0.625,  0.875,  1.125,  1.375,  1.625,  1.875,  2.125,
+      dtype=float32)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lon</span></div><div class='xr-var-dims'>(lon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>0.125 0.375 0.625 ... 44.62 44.88</div><input id='attrs-6a46bf1a-c857-462c-92ba-a7271dbefca1' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-6a46bf1a-c857-462c-92ba-a7271dbefca1' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-9172b28e-90ee-4d95-95d6-385a14f93ca9' class='xr-var-data-in' type='checkbox'><label for='data-9172b28e-90ee-4d95-95d6-385a14f93ca9' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>actual_range :</span></dt><dd>[1.25000e-01 3.59875e+02]</dd><dt><span>axis :</span></dt><dd>X</dd></dl></div><div class='xr-var-data'><pre>array([ 0.125,  0.375,  0.625,  0.875,  1.125,  1.375,  1.625,  1.875,  2.125,
         2.375,  2.625,  2.875,  3.125,  3.375,  3.625,  3.875,  4.125,  4.375,
         4.625,  4.875,  5.125,  5.375,  5.625,  5.875,  6.125,  6.375,  6.625,
         6.875,  7.125,  7.375,  7.625,  7.875,  8.125,  8.375,  8.625,  8.875,
@@ -2039,17 +1996,17 @@ Attributes:
        38.375, 38.625, 38.875, 39.125, 39.375, 39.625, 39.875, 40.125, 40.375,
        40.625, 40.875, 41.125, 41.375, 41.625, 41.875, 42.125, 42.375, 42.625,
        42.875, 43.125, 43.375, 43.625, 43.875, 44.125, 44.375, 44.625, 44.875],
-      dtype=float32)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-3dbedc43-02da-4b6a-b26b-8a236fe1e61f' class='xr-section-summary-in' type='checkbox'  checked><label for='section-3dbedc43-02da-4b6a-b26b-8a236fe1e61f' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>sst</span></div><div class='xr-var-dims'>(lat, lon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-0f5e6577-1a1c-4aa3-a03d-6ef9ac598297' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-0f5e6577-1a1c-4aa3-a03d-6ef9ac598297' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-c01db21b-969f-4adc-9adc-a9bfe7c6e376' class='xr-var-data-in' type='checkbox'><label for='data-c01db21b-969f-4adc-9adc-a9bfe7c6e376' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Daily Sea Surface Temperature</dd><dt><span>units :</span></dt><dd>degC</dd><dt><span>valid_range :</span></dt><dd>[-3. 45.]</dd><dt><span>precision :</span></dt><dd>2.0</dd><dt><span>dataset :</span></dt><dd>NOAA High-resolution Blended Analysis</dd><dt><span>var_desc :</span></dt><dd>Sea Surface Temperature</dd><dt><span>level_desc :</span></dt><dd>Surface</dd><dt><span>statistic :</span></dt><dd>Mean</dd><dt><span>parent_stat :</span></dt><dd>Individual Observations</dd><dt><span>actual_range :</span></dt><dd>[-1.8  36.13]</dd><dt><span>_ChunkSizes :</span></dt><dd>[   1  720 1440]</dd></dl></div><div class='xr-var-data'><pre>[27360 values with dtype=float32]</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-79311af4-d344-4bcf-8ccd-3fbf68b8d713' class='xr-section-summary-in' type='checkbox'  ><label for='section-79311af4-d344-4bcf-8ccd-3fbf68b8d713' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>lat</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-ce1cbcf3-951b-478a-a251-7382fc807d3f' class='xr-index-data-in' type='checkbox'/><label for='index-ce1cbcf3-951b-478a-a251-7382fc807d3f' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([36.125, 36.375, 36.625, 36.875, 37.125, 37.375, 37.625, 37.875, 38.125,
+      dtype=float32)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-6fb7a830-0888-4b4f-85ef-d32519103a8c' class='xr-section-summary-in' type='checkbox'  checked><label for='section-6fb7a830-0888-4b4f-85ef-d32519103a8c' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>sst</span></div><div class='xr-var-dims'>(lat, lon)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>...</div><input id='attrs-dcd790e2-c034-4cac-82a6-c7b11e1bbc4e' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-dcd790e2-c034-4cac-82a6-c7b11e1bbc4e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-1dad93ab-994c-41df-9e47-831ba4f0d4a3' class='xr-var-data-in' type='checkbox'><label for='data-1dad93ab-994c-41df-9e47-831ba4f0d4a3' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>Daily Sea Surface Temperature</dd><dt><span>units :</span></dt><dd>degC</dd><dt><span>valid_range :</span></dt><dd>[-3. 45.]</dd><dt><span>precision :</span></dt><dd>2.0</dd><dt><span>dataset :</span></dt><dd>NOAA High-resolution Blended Analysis</dd><dt><span>var_desc :</span></dt><dd>Sea Surface Temperature</dd><dt><span>level_desc :</span></dt><dd>Surface</dd><dt><span>statistic :</span></dt><dd>Mean</dd><dt><span>parent_stat :</span></dt><dd>Individual Observations</dd><dt><span>actual_range :</span></dt><dd>[-1.8  36.13]</dd><dt><span>_ChunkSizes :</span></dt><dd>[   1  720 1440]</dd></dl></div><div class='xr-var-data'><pre>[27360 values with dtype=float32]</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-cc7f29fb-2c5b-40c2-9929-5a0501b85c16' class='xr-section-summary-in' type='checkbox'  ><label for='section-cc7f29fb-2c5b-40c2-9929-5a0501b85c16' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>lat</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-4f6a4963-fac1-4db8-8899-5822cbad8d29' class='xr-index-data-in' type='checkbox'/><label for='index-4f6a4963-fac1-4db8-8899-5822cbad8d29' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([36.125, 36.375, 36.625, 36.875, 37.125, 37.375, 37.625, 37.875, 38.125,
        38.375,
        ...
        71.625, 71.875, 72.125, 72.375, 72.625, 72.875, 73.125, 73.375, 73.625,
        73.875],
-      dtype=&#x27;float32&#x27;, name=&#x27;lat&#x27;, length=152))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>lon</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-1428d1b3-1288-4f9b-af3f-62d4cfc16285' class='xr-index-data-in' type='checkbox'/><label for='index-1428d1b3-1288-4f9b-af3f-62d4cfc16285' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([ 0.125,  0.375,  0.625,  0.875,  1.125,  1.375,  1.625,  1.875,  2.125,
+      dtype=&#x27;float32&#x27;, name=&#x27;lat&#x27;, length=152))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>lon</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-f7673632-715b-4605-bd4f-364a1c444fc8' class='xr-index-data-in' type='checkbox'/><label for='index-f7673632-715b-4605-bd4f-364a1c444fc8' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([ 0.125,  0.375,  0.625,  0.875,  1.125,  1.375,  1.625,  1.875,  2.125,
         2.375,
        ...
        42.625, 42.875, 43.125, 43.375, 43.625, 43.875, 44.125, 44.375, 44.625,
        44.875],
-      dtype=&#x27;float32&#x27;, name=&#x27;lon&#x27;, length=180))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-08b67067-e6c8-4d76-a6b9-6071f1922522' class='xr-section-summary-in' type='checkbox'  ><label for='section-08b67067-e6c8-4d76-a6b9-6071f1922522' class='xr-section-summary' >Attributes: <span>(10)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>Conventions :</span></dt><dd>CF-1.5</dd><dt><span>_NCProperties :</span></dt><dd>version=2,netcdf=4.7.0,hdf5=1.10.5,</dd><dt><span>title :</span></dt><dd>NOAA/NCEI 1/4 Degree Daily Optimum Interpolation Sea Surface Temperature (OISST) Analysis, Version 2.1</dd><dt><span>institution :</span></dt><dd>NOAA/National Centers for Environmental Information</dd><dt><span>source :</span></dt><dd>NOAA/NCEI https://www.ncei.noaa.gov/data/sea-surface-temperature-optimum-interpolation/v2.1/access/avhrr/</dd><dt><span>References :</span></dt><dd>https://www.psl.noaa.gov/data/gridded/data.noaa.oisst.v2.highres.html</dd><dt><span>dataset_title :</span></dt><dd>NOAA Daily Optimum Interpolation Sea Surface Temperature</dd><dt><span>version :</span></dt><dd>Version 2.1</dd><dt><span>comment :</span></dt><dd>Reynolds, et al.(2007) Daily High-Resolution-Blended Analyses for Sea Surface Temperature (available at https://doi.org/10.1175/2007JCLI1824.1). Banzon, et al.(2016) A long-term record of blended satellite and in situ sea-surface temperature for climate monitoring, modeling and environmental studies (available at https://doi.org/10.5194/essd-8-165-2016). Huang, B., C. Liu, V. Banzon, E. Freeman, G. Graham, B. Hankins, T. Smith, and H.-M. Zhang, 2021: Improvements of the Daily Optimum Interpolation Sea Surface Temperature (DOISST) Version 2.1 (available at https://doi.org/10.1175/JCLI-D-20-0166.1). Anomaly is based on 1971-2000 OI.v2 SST. Satellite data: multi-satellite sensor (AVHRR+VIIRS) data. Ice data: NCEP Ice and GSFC Ice. Data less than 15 days old may be subject to revision.</dd><dt><span>DODS_EXTRA.Unlimited_Dimension :</span></dt><dd>time</dd></dl></div></li></ul></div></div></div></div>
+      dtype=&#x27;float32&#x27;, name=&#x27;lon&#x27;, length=180))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-906fa429-c233-42d7-bf31-244551bf2005' class='xr-section-summary-in' type='checkbox'  ><label for='section-906fa429-c233-42d7-bf31-244551bf2005' class='xr-section-summary' >Attributes: <span>(10)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>Conventions :</span></dt><dd>CF-1.5</dd><dt><span>_NCProperties :</span></dt><dd>version=2,netcdf=4.7.0,hdf5=1.10.5,</dd><dt><span>title :</span></dt><dd>NOAA/NCEI 1/4 Degree Daily Optimum Interpolation Sea Surface Temperature (OISST) Analysis, Version 2.1</dd><dt><span>institution :</span></dt><dd>NOAA/National Centers for Environmental Information</dd><dt><span>source :</span></dt><dd>NOAA/NCEI https://www.ncei.noaa.gov/data/sea-surface-temperature-optimum-interpolation/v2.1/access/avhrr/</dd><dt><span>References :</span></dt><dd>https://www.psl.noaa.gov/data/gridded/data.noaa.oisst.v2.highres.html</dd><dt><span>dataset_title :</span></dt><dd>NOAA Daily Optimum Interpolation Sea Surface Temperature</dd><dt><span>version :</span></dt><dd>Version 2.1</dd><dt><span>comment :</span></dt><dd>Reynolds, et al.(2007) Daily High-Resolution-Blended Analyses for Sea Surface Temperature (available at https://doi.org/10.1175/2007JCLI1824.1). Banzon, et al.(2016) A long-term record of blended satellite and in situ sea-surface temperature for climate monitoring, modeling and environmental studies (available at https://doi.org/10.5194/essd-8-165-2016). Huang, B., C. Liu, V. Banzon, E. Freeman, G. Graham, B. Hankins, T. Smith, and H.-M. Zhang, 2021: Improvements of the Daily Optimum Interpolation Sea Surface Temperature (DOISST) Version 2.1 (available at https://doi.org/10.1175/JCLI-D-20-0166.1). Anomaly is based on 1971-2000 OI.v2 SST. Satellite data: multi-satellite sensor (AVHRR+VIIRS) data. Ice data: NCEP Ice and GSFC Ice. Data less than 15 days old may be subject to revision.</dd><dt><span>DODS_EXTRA.Unlimited_Dimension :</span></dt><dd>time</dd></dl></div></li></ul></div></div></div></div>
 </div>
 <p>This can be more complicated if you need to handled wrapped longitude ranges. You can do this instead.</p>
 <div class="cell docutils container">
@@ -2148,9 +2105,6 @@ Attributes:
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/5889542f41037bd0a51bb8bb5c1f84b0fd124ff33941b26a37a6d8a707bb9a22.png" src="_images/5889542f41037bd0a51bb8bb5c1f84b0fd124ff33941b26a37a6d8a707bb9a22.png" />
 </div>
 </div>
 </section>
