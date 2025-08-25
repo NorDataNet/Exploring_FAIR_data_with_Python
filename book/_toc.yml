@@ -4,7 +4,7 @@
 format: jb-book
 root: intro
 chapters:
-- file: Global_and_regional_bathymetry.ipynb
+- file: Global_and_regional_relief.ipynb
 - file: global_sea_surface_temperatures_combined.ipynb
 - file: global_surface_temperature_anomalies.ipynb
 
